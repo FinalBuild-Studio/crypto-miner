@@ -13,6 +13,7 @@
     "axios": "^0.15.3",
     "cross-env": "^3.2.3",
     "laravel-mix": "0.*",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "jquery": "^3.2.1"
   }
 }
