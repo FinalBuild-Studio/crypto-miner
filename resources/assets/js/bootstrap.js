@@ -8,9 +8,13 @@ window._ = require('lodash');
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
+    window.$ = window.jQuery = require('./dashboard/jquery-3.1.0.min');
 
-    require('bootstrap-sass');
+    require('./dashboard/bootstrap.min');
+    require('./dashboard/bootstrap-notify');
+    require('./dashboard/chartist.min');
+    require('./dashboard/material.min');
+    require('./dashboard/material-dashboard');
 } catch (e) {}
 
 /**
