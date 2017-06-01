@@ -7,5 +7,14 @@ use App\Http\Controllers\Controller;
 
 class GithubController extends Controller
 {
-    //
+
+    public function login()
+    {
+
+    }
+
+    public function callback()
+    {
+
+    }
 }

@@ -7,5 +7,14 @@ use App\Http\Controllers\Controller;
 
 class GoogleController extends Controller
 {
-    //
+
+    public function login()
+    {
+
+    }
+
+    public function callback()
+    {
+
+    }
 }
