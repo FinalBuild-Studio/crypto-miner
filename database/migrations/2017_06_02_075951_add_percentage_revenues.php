@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContractsTable extends Migration
+class AddPercentageRevenues extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class CreateContractsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('revenues', function (Blueprint $table) {
+            $table->double('percentage')->default(0);
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('revenues', function (Blueprint $table) {
+            $table->dropColumn('percentage');
+        });
     }
 }
