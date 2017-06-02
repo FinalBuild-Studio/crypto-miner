@@ -16,6 +16,12 @@ class Investment extends Model
         'expired_at',
     ];
 
+    protected $fillable = [
+        'amount',
+        'currency_id',
+        'user_id',
+    ];
+
     public function scopeInvestors($query)
     {
         $investors   = [];

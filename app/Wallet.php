@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Wallet extends Model
 {
 
+    protected $fillable = [
+        'currency_id',
+        'amount',
+        'user_id',
+        'percentage',
+    ];
+
     public function scopeUser($query, $userId, $currencyId)
     {
         return $query
