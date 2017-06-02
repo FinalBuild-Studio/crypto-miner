@@ -12,6 +12,10 @@ class Investment extends Model
     public const ENABLED     = 1;
     public const EXPIRED     = 2;
 
+    protected $dates = [
+        'expired_at',
+    ];
+
     public function scopeInvestors($query)
     {
         $investors   = [];
