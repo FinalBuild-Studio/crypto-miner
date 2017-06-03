@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Api;
 
 use DB;
 use Illuminate\Http\Request;
+use App\Exceptions\GeneralException;
 use App\{Currency, Investment, Revenue, Log};
 use App\Http\Controllers\Controller;
 
@@ -19,7 +20,7 @@ class RevenueController extends Controller
         $currency = Currency::name($currency);
 
         if (!$currency->is_crypto) {
-            // throw
+            throw new GeneralException(100);
         }
 
         $transfered  = false;
