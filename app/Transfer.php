@@ -9,10 +9,7 @@ class Transfer extends Model
 
     public const WAITING    = 0;
     public const PROCESSING = 1;
-
-    protected $casts = [
-        'status' => 'boolean',
-    ];
+    public const DONE       = 2;
 
     protected $fillable = [
         'amount',
