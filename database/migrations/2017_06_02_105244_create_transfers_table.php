@@ -1,5 +1,6 @@
 <?php
 
+use App\Transfer;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,7 +16,7 @@ class CreateTransfersTable extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('status')->default(false);
+            $table->tinyInteger('status')->default(Transfer::WAITING);
             $table->double('amount')->default(0);
             $table->double('price_at')->default(0);
             $table->double('twd_price')->default(0);
