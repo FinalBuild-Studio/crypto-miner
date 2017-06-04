@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Investment, Revenue, Currency};
+use App\{Revenue, Currency, Wallet};
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,25 +15,25 @@ class DashboardController extends Controller
         /**
          * get current user percentage
          */
-        $percentages = Investment::percentage();
-        $percentage  = $percentages[$user->id] * 100;
+        $investors  = investors();
+        $percentage = ($investors[$user->id] ?? 0) * 100;
 
         /**
          * ETH
          */
-        $eth       = Revenue::user($user->id, Currency::ETH);
-        $ethWallet = Wallet::user($user->id, Currency::ETH);
+        $eth       = Revenue::user($user->id, Currency::ETH)->sum('amount');
+        $ethWallet = Wallet::user($user->id, Currency::ETH)->sum('amount');
 
         /**
          * BTC
          */
-        $btc       = Revenue::user($user->id, Currency::BTC);
-        $btcWallet = Wallet::user($user->id, Currency::BTC);
+        $btc       = Revenue::user($user->id, Currency::BTC)->sum('amount');
+        $btcWallet = Wallet::user($user->id, Currency::BTC)->sum('amount');
 
         /**
          * TWD
          */
-        $twdWallet = Wallet::user($user->id, Currency::TWD);
+        $twdWallet = Wallet::user($user->id, Currency::TWD)->sum('amount');
 
         /**
          * set view variable
@@ -43,7 +43,7 @@ class DashboardController extends Controller
         view()->share('ethWallet', $ethWallet);
         view()->share('btc', $btc);
         view()->share('btcWallet', $btcWallet);
-        view()->share('twd', $twdWallet);
+        view()->share('twdWallet', $twdWallet);
 
         return view('dashboard');
     }
