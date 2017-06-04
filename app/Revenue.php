@@ -19,7 +19,6 @@ class Revenue extends Model
     {
         return $query
             ->where('user_id', '=', $userId)
-            ->where('currency_id', '=', $currencyId)
-            ->sum('amount');
+            ->where('currency_id', '=', $currencyId);
     }
 }

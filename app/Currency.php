@@ -18,6 +18,11 @@ class Currency extends Model
 
     public function scopeName($query, $name)
     {
-        return $query->where('name', '=', $name)->firstOrFail();
+        return $query->where('name', '=', $name);
+    }
+
+    public function scopeCrypto()
+    {
+        return $query->where('is_crypto', '=', true);
     }
 }
