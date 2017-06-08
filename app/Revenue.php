@@ -15,10 +15,13 @@ class Revenue extends Model
         'reason_id',
     ];
 
-    public function scopeUser($query, $userId, $currencyId)
+    public function scopeUser($query, $userId)
     {
-        return $query
-            ->where('user_id', '=', $userId)
-            ->where('currency_id', '=', $currencyId);
+        return $query->where('user_id', '=', $userId);
+    }
+
+    public function scopeCurrency($query, $currencyId)
+    {
+        return $query->where('currency_id', '=', $currencyId);
     }
 }

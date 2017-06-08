@@ -22,9 +22,19 @@ class Investment extends Model
         'user_id',
     ];
 
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
     public function scopeValid($query)
     {
         return $query->whereNotNull('expired_at')
             ->whereDate('expired_at', '>=', Carbon::now());
+    }
+
+    public function scopeUser($query, $userId)
+    {
+        return $query->where('user_id', '=', $userId);
     }
 }
