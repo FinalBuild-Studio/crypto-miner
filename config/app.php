@@ -167,6 +167,8 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Swap\Laravel\SwapServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,7 +228,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
+        'Swap' => Swap\Laravel\Facades\Swap::class,
     ],
 
 ];
