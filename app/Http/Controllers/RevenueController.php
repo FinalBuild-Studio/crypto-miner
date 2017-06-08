@@ -11,10 +11,4 @@ class RevenueController extends Controller
     {
         return view('revenue');
     }
-
-    public function store()
-    {
-        $type  = request()->input('type');
-        $price = request()->input('price');
-    }
 }
