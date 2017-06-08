@@ -5,7 +5,7 @@
 </div>
 <div class="sidebar-wrapper">
   <ul class="nav">
-    <li class="active">
+    <li>
       <a href="{{ url('/dashboard') }}">
         <i class="material-icons">dashboard</i>
         <p>總覽</p>
@@ -13,7 +13,7 @@
     </li>
     <li>
       <a href="{{ url('/revenue') }}">
-        <i class="material-icons">library_books</i>
+        <i class="material-icons">bookmark</i>
         <p>收益紀錄</p>
       </a>
     </li>

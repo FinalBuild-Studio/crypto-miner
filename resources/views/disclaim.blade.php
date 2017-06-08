@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header" data-background-color="purple">
+        <div class="card-header" data-background-color="red">
           <h4 class="title">加入前請先確認以下事項</h4>
         </div>
         <div class="card-content">
@@ -32,8 +32,10 @@
             <li>目前使用的雲端挖礦是 <b>hashflare.io</b> ，根據情況取得同意可能會進行轉投資的方式到別的平台分散風險</li>
             <li>合約採用疊加的方式，譬如: A買了2017/01/01的合約以及2017/01/15，那麼在2018/1/2的時候2017/01/01的會失效，只剩下2017/01/15</li>
             <li>帳戶餘額充足的情況下，每個月可以進行提領</li>
-            <li>因為有安全限制，十四天內不准提出帳戶，要加碼的請統一在每個月的<b>第一個禮拜</b>內提出</li>
-            <li>不接受不認識的人一起投...</li>
+            <li>因為有安全限制，<b>十四天</b>內不准提出帳戶，要加碼的請統一在每個月的<b>第一個禮拜</b>內提出</li>
+            <li>追加訂單之後，請使用匯款/面給方式，匯款完成請提供匯款後四以及金額給<a href="https://www.messenger.com/t/michael34435">我</a>，等到確定生效我會幫你勾選確認</li>
+            <li>一單位的比特幣挖礦為USD {{ App\Currency::name('BTC')->first()->unit_price }}，一單位的以太幣挖礦為USD {{ App\Currency::name('ETH')->first()->unit_price }}</li>
+            <li>計算方式為: CEIL(<font color="red">{{ round(Swap::latest('USD/TWD')->getValue(), 2) }}</font> + 0.5) * 單位價錢 * 單位</li>
           </ul>
         </div>
       </div>
