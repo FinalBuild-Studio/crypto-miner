@@ -169,6 +169,8 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Swap\Laravel\SwapServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        MarkTopper\DoctrineDBALTimestampType\Laravel5ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
         'Swap' => Swap\Laravel\Facades\Swap::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
