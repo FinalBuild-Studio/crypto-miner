@@ -16,9 +16,11 @@
           <table class="table">
             <thead class="text-primary">
               <tr>
-                <th>投資類型</th>
-                <th>投資金額(USD)</th>
-    						<th>狀態</th>
+                <th class="col-md-2">投資類型</th>
+                <th class="col-md-4">投資金額(USD)</th>
+                <th class="col-md-3">建立時間</th>
+                <th class="col-md-2">合約到期日</th>
+    						<th class="col-md-1">狀態</th>
               </tr>
             </thead>
             <tbody>
@@ -26,23 +28,29 @@
                 <tr>
                   <td>{{ $investment->currency->name }}</td>
                   <td>{{ $investment->amount }}</td>
-                  <td></td>
+                  <td>{{ $investment->created_at->format('Y/m/d H:i:s') }}</td>
+                  <td>{{ $investment->expired_at ? $investment->expired_at->format('Y/m/d') : '-' }}</td>
+                  <td>
+                    @if ($investment->status == App\Investment::UNCONFIRMED)
+                      <span class="label label-warning">未確認</span>
+                    @elseif ($investment->status == App\Investment::ENABLED)
+                      <span class="label label-success">處理中</span>
+                    @else
+                      <span class="label label-danger">已過期</span>
+                    @endif
+                  </td>
                 </tr>
               @endforeach
               @if (!$investments->count())
                 <tr>
-                  <td colspan="3" class="text-muted text-center">沒有任何紀錄</td>
+                  <td colspan="5" class="text-muted text-center">沒有任何紀錄</td>
                 </tr>
               @endif
             </tbody>
           </table>
+          {{ $investments->links() }}
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="pull-right">
-      {{ $investments->links() }}
     </div>
   </div>
 @endsection

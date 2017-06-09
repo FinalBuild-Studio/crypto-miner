@@ -42,42 +42,54 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card card-nav-tabs">
         <div class="card-header" data-background-color="green">
-          <h4 class="title">錢包明細</h4>
-          <p class="category">此明細為確認已經提出礦池並且可以提領，但是注意有提領限制，有需要的話可以合併提領</p>
+          <div class="nav-tabs-navigation">
+						<div class="nav-tabs-wrapper">
+							<span class="nav-tabs-title">操作:</span>
+							<ul class="nav nav-tabs" data-tabs="tabs">
+								<li class="">
+									<a href="#profile" data-toggle="tab" aria-expanded="false">
+										<i class="material-icons">account_balance_wallet</i>
+										提領
+									<div class="ripple-container"></div></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+          <p class="category">提領金額過低的話可以請求合併提領</p>
         </div>
         <div class="card-content table-responsive">
           <table class="table">
             <thead class="text-primary">
               <tr>
-                <th>投資類型</th>
-                <th>投資金額(USD)</th>
-    						<th>狀態</th>
+                <th class="col-md-2">貨幣類型</th>
+                <th class="col-md-4">單位</th>
+    						<th class="col-md-3">分配比例</th>
+                <th class="col-md-3">入帳時間</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($wallets as $wallet)
                 <tr>
                   <td>{{ $wallet->currency->name }}</td>
-                  <td>{{ $wallet->amount }}</td>
-                  <td></td>
+                  <td>
+                    {{ amount_output($wallet->amount) }}
+                  </td>
+                  <td>{{ ($wallet->percentage * 100) . '%' }}</td>
+                  <td>{{ $wallet->created_at->format('Y/m/d H:i:s') }}</td>
                 </tr>
               @endforeach
               @if (!$wallets->count())
                 <tr>
-                  <td colspan="3" class="text-muted text-center">沒有任何紀錄</td>
+                  <td colspan="4" class="text-muted text-center">沒有任何紀錄</td>
                 </tr>
               @endif
             </tbody>
           </table>
+          {{ $wallets->links() }}
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="pull-right">
-      {{ $wallets->links() }}
     </div>
   </div>
 @endsection
