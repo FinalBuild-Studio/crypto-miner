@@ -20,7 +20,7 @@ class CreateInvestmentsTable extends Migration
             $table->double('amount')->default(0);
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamp('expired_at');
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }
