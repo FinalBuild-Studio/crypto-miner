@@ -1,6 +1,6 @@
 <?php
 
-use App\Investment;
+use App\{Investment, Revenue};
 
 if (!function_exists('investors'))
 {
@@ -41,5 +41,52 @@ if (!function_exists('investors'))
         }
 
         return $percentage;
+    }
+}
+
+if (!function_exists('revenue_diff_percentage'))
+{
+
+    function revenue_diff_percentage($currency)
+    {
+        $latest   = Revenue::currency($currency)
+            ->latest()
+            ->first();
+        $previous = Revenue::currency($currency)
+            ->latest()
+            ->skip(1)
+            ->take(1)
+            ->first();
+
+        $latestAmount   = $latest->amount ?? 0;
+        $previousAmount = $previous->amount ?? 1;
+
+        return round($latestAmount / $previousAmount * 100, 2);
+    }
+}
+
+if (!function_exists('revenue_diff_chart'))
+{
+
+    function revenue_diff_chart($currency)
+    {
+        $revenue = Revenue::currency($currency)->latest()->take(90);
+        $date    = array_pluck($revenue, 'created_at');
+        $amount  = array_pluck($revenue, 'amount');
+
+        return array_combine($date, $amount);
+    }
+}
+
+if (!function_exists('amount_output'))
+{
+
+    function amount_output($amount)
+    {
+        $html   = '<font color="%s">%s</font>';
+        $color  = $amount < 0 ? 'red' : 'green';
+        $amount = abs($amount);
+
+        return sprintf($html, $color, $amount);
     }
 }
