@@ -45,33 +45,17 @@ class DashboardController extends Controller
         view()->share('btcWallet', $btcWallet);
         view()->share('twdWallet', $twdWallet);
 
-
-        $btcLatest   = Revenue::currency(Currency::BTC)
-            ->latest()
-            ->first();
-        $btcPrevious = Revenue::currency(Currency::BTC)
-            ->latest()
-            ->skip(1)
-            ->take(1)
-            ->first();
-        $ethLatest   = Revenue::currency(Currency::ETH)
-            ->latest()
-            ->first();
-        $ethPrevious = Revenue::currency(Currency::ETH)
-            ->latest()
-            ->skip(1)
-            ->take(1)
-            ->first();
-
-        $btcLatestAmount   = $btcLatest->amount ?? 0;
-        $btcPreviousAmount = $btcPrevious->amount ?? 1;
-        $ethLatestAmount   = $ethLatest->amount ?? 0;
-        $ethPreviousAmount = $ethPrevious->amount ?? 1;
-        $btcPercentage     = round($btcLatestAmount / $btcPreviousAmount * 100, 2);
-        $ethPercentage     = round($ethLatestAmount / $ethPreviousAmount * 100, 2);
+        $btcPercentage = revenue_diff_percentage(Currency::BTC);
+        $ethPercentage = revenue_diff_percentage(Currency::ETH);
 
         view()->share('btcPercentage', $btcPercentage);
         view()->share('ethPercentage', $ethPercentage);
+
+        $btcChart = revenue_diff_chart(Currency::BTC);
+        $ethChart = revenue_diff_chart(Currency::ETH);
+
+        view()->share('btcChart', $btcChart);
+        view()->share('ethChart', $ethChart);
 
         return view('dashboard');
     }

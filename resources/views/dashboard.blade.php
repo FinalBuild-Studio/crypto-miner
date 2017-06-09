@@ -78,7 +78,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-chart" data-background-color="blue">
-          <div class="ct-chart"></div>
+          <div class="ct-chart" id="btc-chart"></div>
         </div>
         <div class="card-content">
           <h4 class="title">比特幣每日產出趨勢</h4>
@@ -106,7 +106,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-chart" data-background-color="green">
-          <div class="ct-chart"></div>
+          <div class="ct-chart" id="eth-chart"></div>
         </div>
         <div class="card-content">
           <h4 class="title">以太幣每日產出趨勢</h4>
@@ -131,4 +131,9 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('footerjs')
+  @include('components.chart', ['element' => 'btc-chart', 'data' => $btcChart])
+  @include('components.chart', ['element' => 'eth-chart', 'data' => $ethChart])
 @endsection

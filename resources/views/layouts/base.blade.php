@@ -22,5 +22,7 @@
 		  </div>
 		</div>
 		@include('layouts.partial.html_footer_js')
+
+		@yield('footerjs')
 	</body>
 </html>
