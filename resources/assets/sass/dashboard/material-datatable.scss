@@ -1,0 +1,75 @@
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 1px 0;
+  border-radius: 4px;
+  float: right;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  border: 0;
+  border-radius: 30px !important;
+  transition: all .3s;
+  padding: 0px 11px;
+  margin: 0 3px;
+  min-width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: #999999;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: transparent;
+}
+.pagination > li > a:hover, .pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+  color: #999999;
+}
+.pagination > .active > a,
+.pagination > .active > span {
+  color: #999999;
+  text-align: center;
+}
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  background-color: #9c27b0;
+  border-color: #9c27b0;
+  color: #FFFFFF;
+  box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+.pagination.pagination-info > .active > a, .pagination.pagination-info > .active > a:focus, .pagination.pagination-info > .active > a:hover,
+.pagination.pagination-info > .active > span,
+.pagination.pagination-info > .active > span:focus,
+.pagination.pagination-info > .active > span:hover {
+  background-color: #00bcd4;
+  border-color: #00bcd4;
+  box-shadow: 0 4px 5px 0 rgba(0, 188, 212, 0.14), 0 1px 10px 0 rgba(0, 188, 212, 0.12), 0 2px 4px -1px rgba(0, 188, 212, 0.2);
+}
+.pagination.pagination-success > .active > a, .pagination.pagination-success > .active > a:focus, .pagination.pagination-success > .active > a:hover,
+.pagination.pagination-success > .active > span,
+.pagination.pagination-success > .active > span:focus,
+.pagination.pagination-success > .active > span:hover {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  box-shadow: 0 4px 5px 0 rgba(76, 175, 80, 0.14), 0 1px 10px 0 rgba(76, 175, 80, 0.12), 0 2px 4px -1px rgba(76, 175, 80, 0.2);
+}
+.pagination.pagination-warning > .active > a, .pagination.pagination-warning > .active > a:focus, .pagination.pagination-warning > .active > a:hover,
+.pagination.pagination-warning > .active > span,
+.pagination.pagination-warning > .active > span:focus,
+.pagination.pagination-warning > .active > span:hover {
+  background-color: #ff9800;
+  border-color: #ff9800;
+  box-shadow: 0 4px 5px 0 rgba(255, 152, 0, 0.14), 0 1px 10px 0 rgba(255, 152, 0, 0.12), 0 2px 4px -1px rgba(255, 152, 0, 0.2);
+}
+.pagination.pagination-danger > .active > a, .pagination.pagination-danger > .active > a:focus, .pagination.pagination-danger > .active > a:hover,
+.pagination.pagination-danger > .active > span,
+.pagination.pagination-danger > .active > span:focus,
+.pagination.pagination-danger > .active > span:hover {
+  background-color: #f44336;
+  border-color: #f44336;
+  box-shadow: 0 4px 5px 0 rgba(244, 67, 54, 0.14), 0 1px 10px 0 rgba(244, 67, 54, 0.12), 0 2px 4px -1px rgba(244, 67, 54, 0.2);
+}

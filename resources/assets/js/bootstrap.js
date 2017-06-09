@@ -11,10 +11,11 @@ try {
     window.$ = window.jQuery = require('./dashboard/jquery-3.1.0.min');
 
     require('./dashboard/bootstrap.min');
-    require('./dashboard/bootstrap-notify');
-    require('./dashboard/chartist.min');
     require('./dashboard/material.min');
     require('./dashboard/material-dashboard');
+    require('./dashboard/bootstrap-notify');
+    window.$.chartist = require('./dashboard/chartist.min');
+    window.$.dialog = require('bootstrap3-dialog');
 } catch (e) {}
 
 /**
