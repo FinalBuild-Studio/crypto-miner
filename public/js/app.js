@@ -11973,19 +11973,12 @@ if (token) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-/*
-
-
-
-     Creative Tim Modifications
-
-     Lines: 239, 240 was changed from top: 5px to top: 50% and we added margin-top: -13px. In this way the close button will be aligned vertically
-     Line:242 - modified when the icon is set, we add the class "alert-with-icon", so there will be enough space for the icon.
-
-
-
-
-*/
+/**
+ * Creative Tim Modifications
+ *
+ * Lines: 239, 240 was changed from top: 5px to top: 50% and we added margin-top: -13px. In this way the close button will be aligned vertically
+ * Line:242 - modified when the icon is set, we add the class "alert-with-icon", so there will be enough space for the icon.
+ */
 
 /*
 * Project: Bootstrap Notify = v3.1.5
