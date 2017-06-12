@@ -36,7 +36,7 @@
             <li>因為有安全限制，<b>十四天</b>內不准提出帳戶，要加碼的請統一在每個月的<b>第一個禮拜</b>內提出</li>
             <li>追加訂單之後，請使用匯款/面給方式，匯款完成請提供匯款後四以及金額給<a href="https://www.messenger.com/t/michael34435">我</a>，等到確定生效我會幫你勾選確認</li>
             <li>一單位的比特幣挖礦為USD {{ App\Currency::name('BTC')->first()->unit_price }}，一單位的以太幣挖礦為USD {{ App\Currency::name('ETH')->first()->unit_price }}</li>
-            <li>計算方式為: CEIL(<font color="red">{{ round(Swap::latest('USD/TWD')->getValue(), 2) }}</font> + 0.5) * 單位價錢 * 單位</li>
+            <li>計算方式為: CEIL(<font color="red">{{ round(Swap::latest('USD/TWD')->getValue(), 2) }}</font> + 0.5) * 單位價錢 * 單位，如果單位很大很介意0.1或是0.2差距再說</li>
           </ul>
         </div>
       </div>

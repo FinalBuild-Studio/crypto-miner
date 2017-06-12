@@ -7,10 +7,27 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card card-nav-tabs">
         <div class="card-header" data-background-color="purple">
-          <h4 class="title">Simple Table</h4>
-          <p class="category">Here is a subtitle for this table</p>
+          <div class="nav-tabs-navigation">
+						<div class="nav-tabs-wrapper">
+							<span class="nav-tabs-title">操作:</span>
+							<ul class="nav nav-tabs" data-tabs="tabs">
+                <li>
+									<a href="#" data-toggle="tab" aria-expanded="false">
+										<i class="material-icons">attach_money</i>
+										投資比特幣
+									<div class="ripple-container"></div></a>
+								</li>
+                <li>
+									<a href="#" data-toggle="tab" aria-expanded="false">
+										<i class="material-icons">attach_money</i>
+										投資以太幣
+									<div class="ripple-container"></div></a>
+								</li>
+							</ul>
+						</div>
+					</div>
         </div>
         <div class="card-content table-responsive">
           <table class="table">

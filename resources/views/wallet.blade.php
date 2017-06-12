@@ -48,8 +48,8 @@
 						<div class="nav-tabs-wrapper">
 							<span class="nav-tabs-title">操作:</span>
 							<ul class="nav nav-tabs" data-tabs="tabs">
-								<li class="">
-									<a href="#profile" data-toggle="tab" aria-expanded="false">
+								<li>
+									<a href="#" data-toggle="tab" aria-expanded="false">
 										<i class="material-icons">account_balance_wallet</i>
 										提領
 									<div class="ripple-container"></div></a>
