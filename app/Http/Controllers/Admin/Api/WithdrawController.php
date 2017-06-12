@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Api;
 
 use DB;
-use Illuminate\Http\Request;
 use App\Exceptions\GeneralException;
 use App\{Currency, Investment, Revenue, Reason, Wallet};
 use App\Http\Controllers\Controller;
@@ -15,16 +14,15 @@ class WithdrawController extends Controller
     {
         $json     = request()->json();
         $currency = $json->get('currency');
-        $currency = Currency::name($currency);
+        $currency = Currency::name($currency)->firstOrFail();
 
         if (!$currency->is_crypto) {
             throw new GeneralException(100);
         }
 
-        $transfered  = false;
-        $percentages = Investment::percentage();
-
-        DB::transaction(function() use ($percentages, $currency, $amount, &$transfered) {
+        $transfered = false;
+        DB::transaction(function() use ($currency, $amount, &$transfered) {
+            $percentages = Investment::percentage();
             foreach ($percentages as $userId => $percentage) {
                 Revenue::createOrFail([
                     'currency_id' => $currency->id,

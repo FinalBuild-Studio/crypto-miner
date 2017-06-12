@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\{Revenue, Currency, Wallet};
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Login;
 
 use Socialite;
-use Illuminate\Http\Request;
 use App\User;
 use App\Http\Controllers\Controller;
 

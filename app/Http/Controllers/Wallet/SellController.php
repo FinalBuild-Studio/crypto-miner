@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Wallet;
 
 use DB;
-use Illuminate\Http\Request;
 use App\Exceptions\GeneralException;
 use App\{Wallet, Currency};
 use App\Http\Controllers\Controller;

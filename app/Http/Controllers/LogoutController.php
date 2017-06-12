@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Exception;
-use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
