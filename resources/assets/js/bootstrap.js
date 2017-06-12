@@ -9,7 +9,6 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('./dashboard/jquery-3.1.0.min');
-
     require('./dashboard/bootstrap.min');
     require('./dashboard/material.min');
     require('./dashboard/material-dashboard');

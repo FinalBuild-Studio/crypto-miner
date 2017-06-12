@@ -7,3 +7,4 @@
 
 require('./bootstrap');
 require('./methods/sidebar');
+require('./methods/modal');
