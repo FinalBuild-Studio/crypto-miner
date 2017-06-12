@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
 use App\{Revenue, Currency, Wallet};
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {

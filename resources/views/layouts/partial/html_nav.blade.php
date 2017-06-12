@@ -12,14 +12,15 @@
     <div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	 				    <i class="material-icons">person</i>
-	 				    <p class="hidden-lg hidden-md">Profile</p>
-	 			      <div class="ripple-container"></div></a><ul class="dropdown-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						</a>
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	 			    <i class="material-icons">person</i>
+	 			    <p class="hidden-lg hidden-md">Profile</p>
+	 			    <div class="ripple-container"></div>
+          </a>
+          <ul class="dropdown-menu">
             <li>
               <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">登出</a>
-              <form id="logout-form" action="{{ action('LogoutController@store') }}" method="POST" style="display: none;">
+              <form id="logout-form" action="{{ action('Auth\LogoutController@store') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
                 <input type="submit" value="logout" style="display: none;">
               </form>

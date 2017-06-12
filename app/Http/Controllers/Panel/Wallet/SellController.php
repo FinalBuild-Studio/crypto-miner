@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Wallet;
+namespace App\Http\Controllers\Panel\Wallet;
 
 use DB;
 use App\Exceptions\GeneralException;
