@@ -41,6 +41,25 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'panel.admin' => [
+            'web',
+            'admin',
+        ],
+
+        'panel.admin.api' => [
+            'admin',
+            'api',
+        ],
+
+        'panel' => [
+            'web',
+            'auth'
+        ],
+
+        'auth' => [
+            'web'
+        ],
     ];
 
     /**
@@ -57,5 +76,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin' => \App\Http\Middleware\CheckAdminPermission::class,
     ];
 }
