@@ -36,21 +36,20 @@
                     </div>
                   </div>
                 </form>
+
+                <div class="footer">
+                  <p class="copyright text-center">
+                    ©
+                    <script>
+                      document.write(new Date().getFullYear())
+                    </script>
+                    <a href="https://blog.capslock.tw">CapsLock, Studio</a>, made by Michael
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <footer class="footer">
-          <div class="container">
-            <p class="copyright pull-right">
-              ©
-              <script>
-                document.write(new Date().getFullYear())
-              </script>
-              <a href="https://blog.capslock.tw">CapsLock, Studio</a>, made by Michael
-            </p>
-          </div>
-        </footer>
       </div>
     </div>
     <script src="{{ url('/js/app.js') }}" charset="utf-8"></script>
