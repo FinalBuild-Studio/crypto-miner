@@ -16,7 +16,7 @@ class InvestmentController extends Controller
 
         view()->share('investments', $investments);
 
-        return view('investment');
+        return view('panel.investment');
     }
 
     public function store()

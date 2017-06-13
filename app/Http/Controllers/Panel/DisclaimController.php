@@ -9,6 +9,6 @@ class DisclaimController extends Controller
 
     public function index()
     {
-        return view('disclaim');
+        return view('panel.disclaim');
     }
 }

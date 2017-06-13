@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Api;
+namespace App\Http\Controllers\Panel\Admin\Api;
 
 use DB;
 use App\Exceptions\GeneralException;
-use App\{Currency, Investment, Revenue, Log};
+use App\{Currency, Investment, Revenue, Reason, Wallet};
 use App\Http\Controllers\Controller;
 
-class RevenueController extends Controller
+class WithdrawController extends Controller
 {
 
     public function store()
     {
         $json     = request()->json();
         $currency = $json->get('currency');
-        $amount   = $json->get('amount');
-
         $currency = Currency::name($currency)->firstOrFail();
 
         if (!$currency->is_crypto) {
@@ -28,16 +26,19 @@ class RevenueController extends Controller
             foreach ($percentages as $userId => $percentage) {
                 Revenue::createOrFail([
                     'currency_id' => $currency->id,
-                    'amount'      => $amount * $percentage,
+                    'amount'      => - ($percentage * $amount),
+                    'user_id'     => $userId,
+                    'reason_id'   => Reason::TRANSFER,
+                    'percentage'  => $percentage,
+                ]);
+
+                Wallet::createOrFail([
+                    'currency_id' => $currency->id,
+                    'amount'      => $percentage * ($amount - $currency->fee),
                     'user_id'     => $userId,
                     'percentage'  => $percentage,
                 ]);
             }
-
-            Log::createOrFail([
-                'currency_id' => $currency->id,
-                'amount'      => $amount,
-            ]);
 
             $transfered = true;
         });

@@ -57,6 +57,6 @@ class DashboardController extends Controller
         view()->share('btcChart', $btcChart);
         view()->share('ethChart', $ethChart);
 
-        return view('dashboard');
+        return view('panel.dashboard');
     }
 }

@@ -49,7 +49,11 @@
 							<span class="nav-tabs-title">操作:</span>
 							<ul class="nav nav-tabs" data-tabs="tabs">
 								<li>
-									<a href="#" data-toggle="tab" aria-expanded="false">
+									<a
+                    href="#"
+                    data-toggle="tab"
+                    aria-expanded="false"
+                  >
 										<i class="material-icons">account_balance_wallet</i>
 										提領
 									<div class="ripple-container"></div></a>

@@ -22,6 +22,6 @@ class WalletController extends Controller
         view()->share('btcAmount', $btcAmount);
         view()->share('twdAmount', $twdAmount);
 
-        return view('wallet');
+        return view('panel.wallet');
     }
 }

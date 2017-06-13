@@ -15,6 +15,6 @@ class RevenueController extends Controller
 
         view()->share('revenues', $revenues);
 
-        return view('revenue');
+        return view('panel.revenue');
     }
 }

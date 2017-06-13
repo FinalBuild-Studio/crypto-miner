@@ -14,16 +14,19 @@
 							<span class="nav-tabs-title">操作:</span>
 							<ul class="nav nav-tabs" data-tabs="tabs">
                 <li>
-									<a href="#" data-toggle="tab" aria-expanded="false">
+									<a
+                    href="#"
+                    data-toggle="tab"
+                    aria-expanded="false"
+                    class="confirm-button"
+                    data-method="POST"
+                    data-title="請選擇想要投資的目標"
+                    data-message="hihihi"
+                  >
 										<i class="material-icons">attach_money</i>
-										投資比特幣
-									<div class="ripple-container"></div></a>
-								</li>
-                <li>
-									<a href="#" data-toggle="tab" aria-expanded="false">
-										<i class="material-icons">attach_money</i>
-										投資以太幣
-									<div class="ripple-container"></div></a>
+										  再投資
+									  <div class="ripple-container"></div>
+                  </a>
 								</li>
 							</ul>
 						</div>

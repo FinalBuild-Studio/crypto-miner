@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Panel\Admin;
 
 use App\Http\Controllers\Controller;
 
@@ -9,6 +9,6 @@ class PendingController extends Controller
 
     public function index()
     {
-        return view('pending');
+        return view('panel.admin.pending');
     }
 }
