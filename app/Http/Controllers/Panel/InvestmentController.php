@@ -12,7 +12,7 @@ class InvestmentController extends Controller
     public function index()
     {
         $user        = request()->user();
-        $investments = Investment::user($user->id)->paginate(10);
+        $investments = Investment::user($user->id)->latest()->paginate(10);
 
         view()->share('investments', $investments);
 

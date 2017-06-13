@@ -11,7 +11,7 @@ class RevenueController extends Controller
     public function index()
     {
         $user     = request()->user();
-        $revenues = Revenue::user($user->id)->paginate(10);
+        $revenues = Revenue::user($user->id)->latest()->paginate(10);
 
         view()->share('revenues', $revenues);
 
