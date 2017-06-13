@@ -12,8 +12,10 @@
           <i class="material-icons">account_balance</i>
         </div>
         <div class="card-content">
-          <p class="category">分配比重</p>
-          <h3 class="title">{{ $btcPercentage }} <small>%</small></h3>
+          <p class="category">BTC 分配比重</p>
+          <h3 class="title">{{ $btcRevenue }} <small>%</small></h3>
+          <p class="category">ETH 分配比重</p>
+          <h3 class="title">{{ $ethRevenue }} <small>%</small></h3>
         </div>
       </div>
     </div>
@@ -27,6 +29,8 @@
           <h3 class="title">{{ $twdWallet }} <small>TWD</small></h3>
         </div>
       </div>
+    </div>
+    <div class="clearfix">
     </div>
     <div class="col-lg-6">
       <div class="card card-stats">

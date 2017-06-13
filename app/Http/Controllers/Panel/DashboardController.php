@@ -15,8 +15,14 @@ class DashboardController extends Controller
         /**
          * get current user percentage
          */
-        $investors  = investors();
-        $percentage = ($investors[$user->id] ?? 0) * 100;
+        $ethInvestors = investors(Currency::ETH);
+        $ethRevenue   = ($ethInvestors[$user->id] ?? 0) * 100;
+
+        $btcInvestors = investors(Currency::BTC);
+        $btcRevenue   = ($btcInvestors[$user->id] ?? 0) * 100;
+
+        view()->share('ethRevenue', $ethRevenue);
+        view()->share('btcRevenue', $btcRevenue);
 
         /**
          * ETH
@@ -38,7 +44,6 @@ class DashboardController extends Controller
         /**
          * set view variable
          */
-        view()->share('percentage', $percentage);
         view()->share('eth', $eth);
         view()->share('ethWallet', $ethWallet);
         view()->share('btc', $btc);
