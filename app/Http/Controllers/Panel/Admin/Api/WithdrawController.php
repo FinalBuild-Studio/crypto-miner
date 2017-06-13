@@ -22,7 +22,7 @@ class WithdrawController extends Controller
 
         $transfered = false;
         DB::transaction(function() use ($currency, $amount, &$transfered) {
-            $percentages = Investment::percentage();
+            $percentages = investors($currency->id);
             foreach ($percentages as $userId => $percentage) {
                 Revenue::createOrFail([
                     'currency_id' => $currency->id,
