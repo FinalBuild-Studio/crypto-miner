@@ -5,10 +5,10 @@ use App\{Investment, Revenue};
 if (!function_exists('investors'))
 {
 
-    function investors()
+    function investors($currency)
     {
         $investors   = [];
-        $investments = Investment::valid()->get();
+        $investments = Investment::valid()->currency($currency)->get();
 
         foreach ($investments as $investment) {
             $investors[$investment->user_id]   = $investors[$investment->user_id] ?? [];
