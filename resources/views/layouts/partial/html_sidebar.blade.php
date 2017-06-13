@@ -36,13 +36,13 @@
       </a>
     </li>
     <li>
-      <a href="{{ action('/admin/pending') }}">
+      <a href="{{ action('Panel\Admin\PendingController@index') }}">
         <i class="material-icons">content_paste</i>
         <p>未處理訂單</p>
       </a>
     </li>
     <li>
-      <a href="{{ action('/admin/transfer') }}">
+      <a href="{{ action('Panel\Admin\TransferController@index') }}">
         <i class="material-icons">feedback</i>
         <p>待轉帳</p>
       </a>
