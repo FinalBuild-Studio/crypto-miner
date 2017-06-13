@@ -17,4 +17,9 @@ class Transfer extends Model
         'user_id',
         'price_at',
     ];
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
 }

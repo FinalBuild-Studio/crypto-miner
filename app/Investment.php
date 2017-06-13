@@ -37,4 +37,9 @@ class Investment extends Model
     {
         return $query->where('user_id', '=', $userId);
     }
+
+    public function scopeCurrency($query, $currencyId)
+    {
+        return $query->where('currency_id', '=', $currencyId);
+    }
 }
