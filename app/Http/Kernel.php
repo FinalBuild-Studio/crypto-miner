@@ -44,14 +44,14 @@ class Kernel extends HttpKernel
         ],
 
         'panel' => [
-            'auth',
             'web',
+            'auth',
         ],
 
         'panel.admin' => [
+            'web',
             'auth',
             'admin',
-            'web',
         ],
 
         'panel.admin.api' => [
