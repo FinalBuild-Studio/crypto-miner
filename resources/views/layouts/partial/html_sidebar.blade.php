@@ -35,17 +35,19 @@
         <p>聲明</p>
       </a>
     </li>
-    <li>
-      <a href="{{ action('Panel\Admin\PendingController@index') }}">
-        <i class="material-icons">content_paste</i>
-        <p>未處理訂單</p>
-      </a>
-    </li>
-    <li>
-      <a href="{{ action('Panel\Admin\TransferController@index') }}">
-        <i class="material-icons">feedback</i>
-        <p>待轉帳</p>
-      </a>
-    </li>
+    @if (Auth::user()->is_admin)
+      <li>
+        <a href="{{ action('Panel\Admin\PendingController@index') }}">
+          <i class="material-icons">content_paste</i>
+          <p>未處理訂單</p>
+        </a>
+      </li>
+      <li>
+        <a href="{{ action('Panel\Admin\TransferController@index') }}">
+          <i class="material-icons">feedback</i>
+          <p>待轉帳</p>
+        </a>
+      </li>
+    @endif
   </ul>
 </div>
