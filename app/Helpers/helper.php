@@ -8,7 +8,7 @@ if (!function_exists('investors'))
     function investors($currency)
     {
         $investors   = [];
-        $investments = Investment::valid()->currency($currency)->get();
+        $investments = Investment::valid()->currencyType($currency)->get();
 
         foreach ($investments as $investment) {
             $investors[$investment->user_id]   = $investors[$investment->user_id] ?? [];
@@ -49,10 +49,10 @@ if (!function_exists('revenue_diff_percentage'))
 
     function revenue_diff_percentage($currency)
     {
-        $latest   = Revenue::currency($currency)
+        $latest   = Revenue::currencyType($currency)
             ->latest()
             ->first();
-        $previous = Revenue::currency($currency)
+        $previous = Revenue::currencyType($currency)
             ->latest()
             ->skip(1)
             ->take(1)
@@ -70,7 +70,7 @@ if (!function_exists('revenue_diff_chart'))
 
     function revenue_diff_chart($currency)
     {
-        $revenue = Revenue::currency($currency)->latest()->take(90);
+        $revenue = Revenue::currencyType($currency)->latest()->take(90);
         $date    = array_pluck($revenue, 'created_at');
         $amount  = array_pluck($revenue, 'amount');
 
