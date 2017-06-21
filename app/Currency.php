@@ -12,6 +12,11 @@ class Currency extends Model
     public const USD = 3;
     public const TWD = 4;
 
+    /**
+     * Do not use timestamps
+     */
+    public $timestamps = false;
+
     protected $casts = [
         'is_crypto' => 'boolean',
     ];
