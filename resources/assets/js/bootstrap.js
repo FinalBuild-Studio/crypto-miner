@@ -8,14 +8,14 @@ window._ = require('lodash');
  */
 
 try {
-    window.$ = window.jQuery = require('./dashboard/jquery-3.1.0.min');
-    require('./dashboard/bootstrap.min');
-    require('./dashboard/material.min');
+    window.$ = window.jQuery = require('jquery');
+    require('bootstrap');
+    require('./dashboard/material');
     require('./dashboard/material-dashboard');
     require('./dashboard/bootstrap-notify');
-    window.$.chartist = require('./dashboard/chartist.min');
+    window.$.chartist = require('./dashboard/chartist');
     window.$.dialog = require('bootstrap3-dialog');
-} catch (e) {}
+} catch (e) {console.log(e);}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
