@@ -18,6 +18,6 @@ class LogoutController extends Controller
         }
 
         return redirect()
-            ->action('LoginController@index');
+            ->action('Auth\LoginController@index');
     }
 }
