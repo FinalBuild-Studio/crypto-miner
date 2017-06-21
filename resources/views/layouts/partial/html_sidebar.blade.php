@@ -24,6 +24,12 @@
       </a>
     </li>
     <li>
+      <a href="{{ action('Panel\TransferController@index') }}">
+        <i class="material-icons">swap_horiz</i>
+        <p>轉帳紀錄</p>
+      </a>
+    </li>
+    <li>
       <a href="{{ action('Panel\InvestmentController@index') }}">
         <i class="material-icons">content_paste</i>
         <p>投資紀錄</p>
