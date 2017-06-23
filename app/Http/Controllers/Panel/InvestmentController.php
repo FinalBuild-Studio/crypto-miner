@@ -30,16 +30,16 @@ class InvestmentController extends Controller
             throw new GeneralException(100);
         }
 
-        if (($amount / $currency->unit_price) !== 0) {
+        if (($amount % $currency->unit_price) !== 0) {
             throw new GeneralException(103);
         }
 
-        Investment::createOrFail([
+        Investment::create([
             'amount'      => $amount,
             'currency_id' => $currency->id,
             'user_id'     => $user->id,
         ]);
 
-        return back();
+        return back()->with('success', '已經申請完成，相關聯絡以及匯款程序請參考聲明頁面');
     }
 }

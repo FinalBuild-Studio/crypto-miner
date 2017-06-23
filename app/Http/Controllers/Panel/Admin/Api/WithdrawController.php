@@ -39,7 +39,7 @@ class WithdrawController extends Controller
                     $percentage = $sum / $deposit[$currencyId];
 
                     if ($sum > 0) {
-                        Revenue::createOrFail([
+                        Revenue::create([
                             'currency_id' => $currencyId,
                             'amount'      => - $amountSum,
                             'user_id'     => $userId,
@@ -47,7 +47,7 @@ class WithdrawController extends Controller
                             'percentage'  => $percentage,
                         ]);
 
-                        Wallet::createOrFail([
+                        Wallet::create([
                             'currency_id' => $currencyId,
                             'amount'      => $amountSum - $percentage * $currency->fee,
                             'user_id'     => $userId,

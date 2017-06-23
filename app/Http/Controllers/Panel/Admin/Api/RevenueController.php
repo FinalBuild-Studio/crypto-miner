@@ -26,7 +26,7 @@ class RevenueController extends Controller
         DB::transaction(function() use ($currency, $amount, &$transfered) {
             $percentages = investors($currency->id);
             foreach ($percentages as $userId => $percentage) {
-                Revenue::createOrFail([
+                Revenue::create([
                     'currency_id' => $currency->id,
                     'amount'      => $amount * $percentage,
                     'user_id'     => $userId,
@@ -34,7 +34,7 @@ class RevenueController extends Controller
                 ]);
             }
 
-            Log::createOrFail([
+            Log::create([
                 'currency_id' => $currency->id,
                 'amount'      => $amount,
             ]);
