@@ -26,7 +26,7 @@
               @foreach ($transfers as $transfer)
                 <tr>
                   <td>{{ $transfer->currency->name }}</td>
-                  <td>{{ amount_output($transfer->amount) }}</td>
+                  <td>{!! amount_output($transfer->amount) !!}</td>
                   <td>{{ $transfer->price_at }}</td>
                   <td>
                     @if ($transfer->status == App\Transfer::WAITING)

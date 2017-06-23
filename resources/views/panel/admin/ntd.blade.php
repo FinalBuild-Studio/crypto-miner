@@ -41,7 +41,7 @@
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->bank_code ?? '-' }}</td>
                   <td>{{ $user->bank_account ?? '-' }}</td>
-                  <td>{{ App\Wallet::user($user->id)->currencyType(App\Currency::TWD)->sum('amount') }}</td>
+                  <td>{{ App\Wallet::who($user->id)->currencyType(App\Currency::TWD)->sum('amount') }}</td>
                   <td>
                     <button
                       class="btn btn-primary btn-xs confirm-button"
@@ -49,6 +49,7 @@
                       data-method="POST"
                       data-title="警告"
                       data-message="請問是否已經匯款到指定帳戶"
+                      data-payload="{{ json_encode(['user_id' => $user->id]) }}"
                     >
                       轉出
                     </button>

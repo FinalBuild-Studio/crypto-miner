@@ -11,11 +11,11 @@ class WalletController extends Controller
     public function index()
     {
         $user      = request()->user();
-        $ethAmount = Wallet::user($user->id)->currencyType(Currency::ETH)->sum('amount');
-        $btcAmount = Wallet::user($user->id)->currencyType(Currency::BTC)->sum('amount');
-        $twdAmount = Wallet::user($user->id)->currencyType(Currency::TWD)->sum('amount');
+        $ethAmount = Wallet::who($user->id)->currencyType(Currency::ETH)->sum('amount');
+        $btcAmount = Wallet::who($user->id)->currencyType(Currency::BTC)->sum('amount');
+        $twdAmount = Wallet::who($user->id)->currencyType(Currency::TWD)->sum('amount');
 
-        $wallets   = Wallet::user($user->id)->latest()->paginate(10);
+        $wallets   = Wallet::who($user->id)->latest()->paginate(10);
 
         view()->share('wallets', $wallets);
         view()->share('ethAmount', $ethAmount);

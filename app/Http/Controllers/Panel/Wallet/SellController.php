@@ -26,7 +26,7 @@ class SellController extends Controller
             throw new GeneralException(102);
         }
 
-        $wallet = Wallet::user($user->id)
+        $wallet = Wallet::who($user->id)
             ->currencyType($currency->id)
             ->sum('amount');
 

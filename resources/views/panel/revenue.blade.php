@@ -26,8 +26,8 @@
               @foreach ($revenues as $revenue)
                 <tr>
                   <td>{{ $revenue->currency->name }}</td>
-                  <td>{{ amount_output($revenue->amount) }}</td>
-                  <td>{{ ($revenue->percentage * 100) }}%</td>
+                  <td>{!! amount_output($revenue->amount) !!}</td>
+                  <td>{{ $revenue->percentage ? ($revenue->percentage * 100) . '%' : '-' }}</td>
                   <td>{{ $revenue->created_at->format('Y/m/d H:i:s') }}</td>
                 </tr>
               @endforeach

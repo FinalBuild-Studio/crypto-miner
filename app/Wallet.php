@@ -19,7 +19,7 @@ class Wallet extends Model
         return $this->belongsTo(Currency::class);
     }
 
-    public function scopeUser($query, $userId)
+    public function scopeWho($query, $userId)
     {
         return $query->where('user_id', '=', $userId);
     }

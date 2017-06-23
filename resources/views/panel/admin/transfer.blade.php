@@ -28,10 +28,10 @@
                 <tr>
                   <td>{{ $transfer->currency->name }}</td>
                   <td>{{ $transfer->user->name }}</td>
-                  <td>{{ amount_output($transfer->amount) }}</td>
+                  <td>{!! amount_output($transfer->amount) !!}</td>
                   <td>{{ $transfer->price_at }}</td>
                   <td>
-                    
+
                   </td>
                 </tr>
               @endforeach

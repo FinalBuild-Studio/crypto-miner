@@ -100,9 +100,9 @@
                 <tr>
                   <td>{{ $wallet->currency->name }}</td>
                   <td>
-                    {{ amount_output($wallet->amount) }}
+                    {!! amount_output($wallet->amount) !!}
                   </td>
-                  <td>{{ ($wallet->percentage * 100) . '%' }}</td>
+                  <td>{{ $wallet->percentage ? ($wallet->percentage * 100) . '%' : '-' }}</td>
                   <td>{{ $wallet->created_at->format('Y/m/d H:i:s') }}</td>
                 </tr>
               @endforeach
