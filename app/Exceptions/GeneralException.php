@@ -2,6 +2,6 @@
 
 namespace App\Exceptions;
 
-class GeneralException extends BaseException
+class GeneralException extends ExceptionBase
 {
 }
