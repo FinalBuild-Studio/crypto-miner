@@ -18,6 +18,7 @@ class CurrencyTable extends Seeder
             'unit_price' => 2.2,
             'is_crypto'  => true,
             'min_sell'   => 0.1,
+            'years'      => 1,
         ]);
 
         DB::table('currencies')->insert([
@@ -27,6 +28,7 @@ class CurrencyTable extends Seeder
             'unit_price' => 1.2,
             'is_crypto'  => true,
             'min_sell'   => 0.001,
+            'years'      => 100,
         ]);
 
         DB::table('currencies')->insert([
