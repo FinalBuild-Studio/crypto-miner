@@ -51,17 +51,39 @@
 								<li>
 									<a
                     href="#"
-                    data-toggle="tab"
                     aria-expanded="false"
+                    class="confirm-button"
+                    data-title="請選擇需要賣出的虛擬幣"
+                    data-action="{{ action('Panel\Wallet\SellController@store') }}"
+                    data-method="POST"
+                    data-message="{{ '<div class="radio">
+                      <label>
+                        <input type="radio" name="currency" value="ETH">
+                        <span class="circle"></span>
+                        <span class="check"></span> ETH
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="currency" value="BTC">
+                        <span class="circle"></span>
+                        <span class="check"></span> BTC
+                      </label>
+                    </div>
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label">總額度</label>
+                      <input type="number" step="0.00001" name="amount" class="form-control">
+                      <span class="material-input"></span>
+                    </div>' }}"
                   >
 										<i class="material-icons">account_balance_wallet</i>
-										提領
+										賣出
 									<div class="ripple-container"></div></a>
 								</li>
 							</ul>
 						</div>
 					</div>
-          <p class="category">提領金額過低的話可以請求合併提領</p>
+          <p class="category">提領金額過低的話可以請求合併提領，賣出成台幣後請提供匯款帳號</p>
         </div>
         <div class="card-content table-responsive">
           <table class="table">

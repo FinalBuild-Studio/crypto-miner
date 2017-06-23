@@ -54,6 +54,12 @@
           <p>待轉帳</p>
         </a>
       </li>
+      <li>
+        <a href="{{ action('Panel\Admin\NTDController@index') }}">
+          <i class="material-icons">copyright</i>
+          <p>台幣帳戶</p>
+        </a>
+      </li>
     @endif
   </ul>
 </div>

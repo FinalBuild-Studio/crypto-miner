@@ -14,8 +14,7 @@ try {
     require('./dashboard/material-dashboard');
     require('./dashboard/bootstrap-notify');
     window.$.chartist = require('./dashboard/chartist');
-    window.$.dialog = require('bootstrap3-dialog');
-} catch (e) {console.log(e);}
+} catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

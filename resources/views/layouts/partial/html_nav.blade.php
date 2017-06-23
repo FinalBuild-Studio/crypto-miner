@@ -28,6 +28,7 @@
 					</ul>
 				</li>
 			</ul>
-		</div>
+      @yield('search')
+    </div>
   </div>
 </nav>

@@ -16,12 +16,30 @@
                 <li>
 									<a
                     href="#"
-                    data-toggle="tab"
                     aria-expanded="false"
                     class="confirm-button"
                     data-method="POST"
                     data-title="請選擇想要投資的目標"
-                    data-message="hihihi"
+                    data-message="{{ '
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="currency" value="ETH" required>
+                            <span class="circle"></span>
+                            <span class="check"></span> ETH
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="currency" value="BTC" required>
+                            <span class="circle"></span>
+                            <span class="check"></span> BTC
+                          </label>
+                        </div>
+                        <div class="form-group label-floating is-empty">
+													<label class="control-label">總價</label>
+													<input type="number" step="0.1" name="amount" class="form-control" required>
+												  <span class="material-input"></span>
+                        </div>' }}"
                   >
 										<i class="material-icons">attach_money</i>
 										  再投資

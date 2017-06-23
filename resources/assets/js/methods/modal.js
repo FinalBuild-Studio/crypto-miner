@@ -1,94 +1,106 @@
 var confirmModalTempalte = '' +
-  '<form method="POST">' +
-    '<div class="hidden">' +
-      '<script type="text/html" id="confirm-modal-payload-template">' +
-        '<input type="hidden" name="$key" value="$value">' +
-      '</script>' +
-      '<div id="confirm-modal-payload-template-target"></div>' +
-      '<script type="text/html" id="confirm-modal-form-method-template">' +
-        '<input type="hidden" name="_method" value="$method">' +
-      '</script>' +
-      '<div id="confirm-modal-form-method-template-target"></div>' +
+  '<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true" style="display: none;">' +
+    '<div class="modal-dialog">' +
+      '<div class="modal-content">' +
+        '<div class="modal-header">' +
+          '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">' +
+            '<i class="material-icons">clear</i>' +
+          '</button>' +
+          '<h4 class="modal-title">$title</h4>' +
+        '</div>' +
+        '<div class="modal-body">' +
+          '<form method="$method">' +
+            '<div class="hidden">' +
+              '<script type="text/html" id="confirm-modal-payload-template">' +
+                '<input type="hidden" name="$key" value="$value">' +
+              '</script>' +
+              '<div id="confirm-modal-payload-template-target"></div>' +
+              '<script type="text/html" id="confirm-modal-form-method-template">' +
+                '<input type="hidden" name="_method" value="$method">' +
+              '</script>' +
+              '<div id="confirm-modal-form-method-template-target"></div>' +
+            '</div>' +
+            '$message' +
+          '</form>' +
+        '</div>' +
+        '<div class="modal-footer">' +
+          '<button type="button" class="btn btn-simple confirm">確認</button>' +
+          '<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">取消</button>' +
+        '</div>' +
+      '</div>' +
     '</div>' +
-    '$message' +
-  '</form>';
+  '</div>' +
+'</div>';
 
-$('.confirm-button').on('click', function(event) {
-  var $this = $(this);
+$('.confirm-button').on('click', event => {
+  event.preventDefault();
+
+  var $this = $(event.currentTarget);
   var isThoughAjax = $this.data('ajax');
   var actionTarget = $this.data('action');
-  var actionMethod = $this.data('method').toUpperCase();
+  var actionMethod = $this.data('method');
+  var actionMessage = $this.data('message');
+  var actionTitle = $this.data('title');
   var payload = $this.data('payload') || {};
-  var title = $this.data('title');
-  var message = confirmModalTempalte.replace(/\$message/, $this.data('message'));
+  var template = confirmModalTempalte;
 
-  $.dialog.show({
-    title: title,
-    message: message,
-    buttons: [{
-      label: '取消',
-      action: (dialog) => {
-        dialog.close();
-      }
-    }, {
-      label: '確定',
-      cssClass: 'btn-primary',
-      action: (dialog) => {
-        var modal = dialog.$modal;
+  // add template
+  template = template.replace(/\$message/, actionMessage);
+  template = template.replace(/\$title/, actionTitle);
+  template = template.replace(/\$method/, actionMethod);
 
-        if (isThoughAjax) {
+  $('#modal').remove();
+  $('body').append(template);
 
-          modal.find('form').on('submit', function(event) {
-            event.preventDefault();
-
-            $.ajax({
-              url: actionTarget,
-              method: actionMethod,
-              dataType: 'json',
-              data: payload,
-              success: function(data, statusCode, jqXHR) {
-                $this.trigger('confirm-action-done', data);
-              },
-              error: function(jqXRH, statusCode, errorThrown) {
-                $this.trigger('confirm-action-failed', errorThrown);
-              },
-              complete: function(jqXRH, statusCode, errorThrown) {
-                dialog.close();
-              }
-            });
+  $('#modal').on('show.bs.modal', e => {
+    $('#modal .confirm').on('click', event => {
+      if (isThoughAjax) {
+        $('#modal').find('form').on('submit', event => {
+          event.preventDefault();
+          $.ajax({
+            url: actionTarget,
+            method: actionMethod,
+            dataType: 'json',
+            data: payload,
+            success: (data, statusCode, jqXHR) => {
+              $this.trigger('confirm-action-done', data);
+            },
+            error: (jqXRH, statusCode, errorThrown) => {
+              $this.trigger('confirm-action-failed', errorThrown);
+            },
+            complete: (jqXRH, statusCode, errorThrown) => {
+              dialog.close();
+            }
           });
+        });
+      } else {
+        $('#modal').find('form').attr('action', actionTarget);
+        if (actionMethod === 'POST' || actionMethod === 'GET') {
+          $('#modal').find('#confirm-modal-form-method-template-target').html('');
         } else {
-          modal.find('form').attr('action', actionTarget);
-
-          if (actionMethod === 'POST' || actionMethod === 'GET') {
-            modal.find('#confirm-modal-form-method-template-target').html('');
-          } else {
-            var formMethodTemplate = modal.find('#confirm-modal-form-method-template').html();
-
-            modal
-              .find('#confirm-modal-form-method-template-target')
-              .html(formMethodTemplate.replace(/\$method/g, actionMethod));
-          }
-
-          payload._token = document.head.querySelector('meta[name="csrf-token"]').content;
-
-          var payloadTempalte = modal.find('#confirm-modal-payload-template').html();
-          var payloads = Object.keys(payload)
-            .map(function(key) {
-              var field = payloadTempalte;
-
-              field = field
-                .replace(/\$key/g, key)
-                .replace(/\$value/g, payload[key]);
-
-              return field;
-            });
-
-          modal.find('#confirm-modal-payload-template-target').html(payloads);
+          var formMethodTemplate = modal.find('#confirm-modal-form-method-template').html();
+          $('#modal')
+            .find('#confirm-modal-form-method-template-target')
+            .html(formMethodTemplate.replace(/\$method/g, actionMethod));
         }
 
-        modal.find('form').submit();
+        payload._token = document.head.querySelector('meta[name="csrf-token"]').content;
+        var payloadTempalte = $('#modal').find('#confirm-modal-payload-template').html();
+        var payloads = Object.keys(payload)
+          .map(function(key) {
+            var field = payloadTempalte;
+            field = field
+              .replace(/\$key/g, key)
+              .replace(/\$value/g, payload[key]);
+            return field;
+          });
+
+        $('#modal').find('#confirm-modal-payload-template-target').html(payloads);
       }
-    }]
+
+      $('#modal').find('form').submit();
+    });
   });
+
+  $('#modal').modal();
 });
