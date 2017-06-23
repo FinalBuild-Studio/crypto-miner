@@ -32,8 +32,18 @@ class User extends Authenticatable
         return $this->hasOne(Admin::class);
     }
 
-    public function scopeIsAdmin()
+    public function wallet()
+    {
+        return $this->hasMany(Wallet::class);
+    }
+
+    public function getIsAdminAttribute()
     {
         return !!$this->admin;
+    }
+
+    public function scopeEmail($query, $email)
+    {
+        return $query->where('email', 'LIKE', '%'.$email.'%');
     }
 }

@@ -18,13 +18,23 @@ class Transfer extends Model
         'price_at',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);
     }
 
-    public function scopeUser($query, $userId)
+    public function scopeWho($query, $userId)
     {
         return $query->where('user_id', '=', $userId);
+    }
+
+    public function scopeWaiting($query)
+    {
+        return $query->where('status', '=', self::WAITING);
     }
 }

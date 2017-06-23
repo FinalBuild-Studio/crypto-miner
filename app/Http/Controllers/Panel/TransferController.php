@@ -11,7 +11,7 @@ class TransferController extends Controller
     public function index()
     {
         $user      = request()->user();
-        $transfers = Transfer::user($user->id)->latest()->paginate(10);
+        $transfers = Transfer::who($user->id)->latest()->paginate(10);
 
         view()->share('transfers', $transfers);
 
