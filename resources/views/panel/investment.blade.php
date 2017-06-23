@@ -36,8 +36,13 @@
                           </label>
                         </div>
                         <div class="form-group label-floating is-empty">
-													<label class="control-label">總價</label>
+													<label class="control-label">總價(美金)</label>
 													<input type="number" step="0.1" name="amount" class="form-control" required>
+												  <span class="material-input"></span>
+                        </div>
+                        <div class="form-group label-floating is-empty">
+													<label class="control-label">匯款後四碼</label>
+													<input type="text" name="code" class="form-control" required>
 												  <span class="material-input"></span>
                         </div>' }}"
                   >
@@ -55,7 +60,8 @@
             <thead class="text-primary">
               <tr>
                 <th class="col-md-2">投資類型</th>
-                <th class="col-md-4">投資金額(USD)</th>
+                <th class="col-md-2">投資金額(USD)</th>
+    						<th class="col-md-2">匯款後四碼</th>
                 <th class="col-md-3">建立時間</th>
                 <th class="col-md-2">合約到期日</th>
     						<th class="col-md-1">狀態</th>
@@ -66,6 +72,7 @@
                 <tr>
                   <td>{{ $investment->currency->name }}</td>
                   <td>{{ $investment->amount }}</td>
+                  <td>{{ $investment->code ?? '-' }}</td>
                   <td>{{ $investment->created_at->format('Y/m/d H:i:s') }}</td>
                   <td>{{ $investment->expired_at ? $investment->expired_at->format('Y/m/d') : '-' }}</td>
                   <td>
@@ -81,7 +88,7 @@
               @endforeach
               @if (!$investments->count())
                 <tr>
-                  <td colspan="5" class="text-muted text-center">沒有任何紀錄</td>
+                  <td colspan="6" class="text-muted text-center">沒有任何紀錄</td>
                 </tr>
               @endif
             </tbody>

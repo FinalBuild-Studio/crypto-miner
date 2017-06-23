@@ -24,6 +24,7 @@ class InvestmentController extends Controller
         $user     = request()->user();
         $amount   = request()->input('amount');
         $currency = request()->input('currency');
+        $code     = request()->input('code');
         $currency = Currency::name($currency)->firstOrFail();
 
         if (!$currency->is_crypto) {
@@ -38,6 +39,7 @@ class InvestmentController extends Controller
             'amount'      => $amount,
             'currency_id' => $currency->id,
             'user_id'     => $user->id,
+            'code'        => $code,
         ]);
 
         return back()->with('success', '已經申請完成，相關聯絡以及匯款程序請參考聲明頁面');

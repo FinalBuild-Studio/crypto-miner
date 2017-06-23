@@ -20,6 +20,7 @@ class Investment extends Model
         'amount',
         'currency_id',
         'user_id',
+        'code',
     ];
 
     public function currency()
