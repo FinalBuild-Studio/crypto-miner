@@ -21,15 +21,15 @@
                       <h4 class="card-title">登入</h4>
                     </div>
                     <div class="card-content">
-                      <a href="{{ action('Auth\Login\AuthController@login', 'facebook') }}" class="btn btn-block btn-social btn-facebook">
+                      <a href="{{ action('Auth\Login\AuthController@login', 'facebook') }}" class="btn btn-center btn-social btn-facebook">
                         <span class="fa fa-facebook"></span>&nbsp;&nbsp;&nbsp;
                         Sign in with Facebook
                       </a>
-                      <a href="{{ action('Auth\Login\AuthController@login', 'github') }}" class="btn btn-block btn-social btn-github">
+                      <a href="{{ action('Auth\Login\AuthController@login', 'github') }}" class="btn btn-center btn-social btn-github">
                         <span class="fa fa-github"></span>&nbsp;&nbsp;&nbsp;
                         Connect in with Github
                       </a>
-                      <a href="{{ action('Auth\Login\AuthController@login', 'google') }}" class="btn btn-block btn-social btn-google">
+                      <a href="{{ action('Auth\Login\AuthController@login', 'google') }}" class="btn btn-center btn-social btn-google">
                         <span class="fa fa-google"></span>&nbsp;&nbsp;&nbsp;
                         Sign in with Google
                       </a>
