@@ -42,20 +42,25 @@
                   <td>{{ $user->bank_code ?? '-' }}</td>
                   <td>{{ $user->bank_account ?? '-' }}</td>
                   <td>{{ App\Wallet::who($user->id)->currencyType(App\Currency::TWD)->sum('amount') }}</td>
-                  <td>
+                  <td class="td-actions">
                     <button
-                      class="btn btn-primary btn-xs confirm-button"
+                      class="btn btn-round btn-danger btn-xs confirm-button"
                       type="button"
                       data-method="POST"
                       data-title="警告"
                       data-message="請問是否已經匯款到指定帳戶"
                       data-payload="{{ json_encode(['user_id' => $user->id]) }}"
                     >
-                      轉出
+                      <i class="material-icons">attach_money</i>
                     </button>
                   </td>
                 </tr>
               @endforeach
+              @if (!$users->count())
+                <tr>
+                  <td colspan="6" class="text-muted text-center">沒有任何紀錄</td>
+                </tr>
+              @endif
             </tbody>
           </table>
         </div>

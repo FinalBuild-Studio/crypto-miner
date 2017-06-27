@@ -72,7 +72,12 @@
                     </div>
                     <div class="form-group label-floating is-empty">
                       <label class="control-label">總額度</label>
-                      <input type="number" step="0.00001" name="amount" class="form-control">
+                      <input type="number" step="0.00000001" name="amount" class="form-control">
+                      <span class="material-input"></span>
+                    </div>
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label">賣點</label>
+                      <input type="number" step="0.00000001" name="price_at" class="form-control">
                       <span class="material-input"></span>
                     </div>' }}"
                   >

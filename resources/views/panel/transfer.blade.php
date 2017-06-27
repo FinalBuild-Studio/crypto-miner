@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-header" data-background-color="orange">
           <h4 class="title">轉帳紀錄</h4>
-          <p class="category">此紀錄為從共同錢包轉成台幣(設定賣點金額為-1的將不會進行處理)</p>
+          <p class="category">此紀錄為從共同錢包轉成台幣(設定賣點金額為小於0的將不會進行處理)</p>
         </div>
         <div class="card-content table-responsive">
           <table class="table">

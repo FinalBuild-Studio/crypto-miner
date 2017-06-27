@@ -27,7 +27,7 @@
                       </a>
                       <a href="{{ action('Auth\Login\AuthController@login', 'github') }}" class="btn btn-block btn-social btn-github">
                         <span class="fa fa-github"></span>&nbsp;&nbsp;&nbsp;
-                        Sign in with Github
+                        Connect in with Github
                       </a>
                       <a href="{{ action('Auth\Login\AuthController@login', 'google') }}" class="btn btn-block btn-social btn-google">
                         <span class="fa fa-google"></span>&nbsp;&nbsp;&nbsp;

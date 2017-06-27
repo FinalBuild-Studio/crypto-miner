@@ -41,9 +41,15 @@
         <p>聲明</p>
       </a>
     </li>
+    <li>
+      <a href="{{ action('Panel\ConfigController@index') }}">
+        <i class="material-icons">build</i>
+        <p>設定</p>
+      </a>
+    </li>
     @if (Auth::user()->is_admin)
       <li>
-        <a href="{{ action('Panel\Admin\PendingController@index') }}">
+        <a href="{{ action('Panel\Admin\InvestmentController@index') }}">
           <i class="material-icons">content_paste</i>
           <p>未處理訂單</p>
         </a>
@@ -56,8 +62,14 @@
       </li>
       <li>
         <a href="{{ action('Panel\Admin\NTDController@index') }}">
-          <i class="material-icons">copyright</i>
+          <i class="material-icons">credit_card</i>
           <p>台幣帳戶</p>
+        </a>
+      </li>
+      <li>
+        <a href="{{ action('Panel\Admin\OperationController@index') }}">
+          <i class="material-icons">extension</i>
+          <p>操控面板</p>
         </a>
       </li>
     @endif

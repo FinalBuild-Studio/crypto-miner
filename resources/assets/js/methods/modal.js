@@ -9,7 +9,7 @@ var confirmModalTempalte = '' +
           '<h4 class="modal-title">$title</h4>' +
         '</div>' +
         '<div class="modal-body">' +
-          '<form method="$method">' +
+          '<form method="POST">' +
             '<div class="hidden">' +
               '<script type="text/html" id="confirm-modal-payload-template">' +
                 '<input type="hidden" name="$key" value="$value">' +
@@ -47,21 +47,35 @@ $('.confirm-button').on('click', event => {
   // add template
   template = template.replace(/\$message/, actionMessage);
   template = template.replace(/\$title/, actionTitle);
-  template = template.replace(/\$method/, actionMethod);
 
   $('#modal').remove();
+  $('#modal').closest('.modal-backdrop').remove();
   $('body').append(template);
 
+  $('#modal').on('hidden.bs.modal', e => {
+    var modal = $(e.currentTarget);
+    $(modal).remove();
+    $(modal).closest('.modal-backdrop').remove();
+  });
+
   $('#modal').on('show.bs.modal', e => {
-    $('#modal .confirm').on('click', event => {
+    var modal = $(e.currentTarget);
+    $(modal).find('.confirm').on('click', event => {
       if (isThoughAjax) {
-        $('#modal').find('form').on('submit', event => {
+        $(modal).find('form').on('submit', event => {
           event.preventDefault();
+
+          var form = $(event.currentTarget);
+          $.each($(form).find(':input'), (key, value) => {
+            var val = $(`*[name=${$(value).attr('name')}]`).val();
+            payload[$(value).attr('name')] = val;
+          });
+
           $.ajax({
             url: actionTarget,
             method: actionMethod,
             dataType: 'json',
-            data: payload,
+            data: JSON.stringify(payload),
             success: (data, statusCode, jqXHR) => {
               $this.trigger('confirm-action-done', data);
             },
@@ -69,17 +83,17 @@ $('.confirm-button').on('click', event => {
               $this.trigger('confirm-action-failed', errorThrown);
             },
             complete: (jqXRH, statusCode, errorThrown) => {
-              dialog.close();
+              $(modal).modal('hide');
             }
           });
         });
       } else {
-        $('#modal').find('form').attr('action', actionTarget);
+        $(modal).find('form').attr('action', actionTarget);
         if (actionMethod === 'POST' || actionMethod === 'GET') {
-          $('#modal').find('#confirm-modal-form-method-template-target').html('');
+          $(modal).find('#confirm-modal-form-method-template-target').html('');
         } else {
-          var formMethodTemplate = modal.find('#confirm-modal-form-method-template').html();
-          $('#modal')
+          var formMethodTemplate = $('#modal').find('#confirm-modal-form-method-template').html();
+          $(modal)
             .find('#confirm-modal-form-method-template-target')
             .html(formMethodTemplate.replace(/\$method/g, actionMethod));
         }
@@ -95,10 +109,10 @@ $('.confirm-button').on('click', event => {
             return field;
           });
 
-        $('#modal').find('#confirm-modal-payload-template-target').html(payloads);
+        $(modal).find('#confirm-modal-payload-template-target').html(payloads);
       }
 
-      $('#modal').find('form').submit();
+      $(modal).find('form').submit();
     });
   });
 

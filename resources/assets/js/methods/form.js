@@ -14,8 +14,9 @@ try {
           $(element).val(value);
         }
 
-        if (!$(element).hasClass('datepicker')) {
-          $(element).focus();
+        if (!$(element).hasClass('datepicker') && value) {
+          $(element).parents('.form-group').removeClass('is-empty');
+          $(element).trigger('keydown');
         }
       }
     });

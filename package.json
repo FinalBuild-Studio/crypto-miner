@@ -16,6 +16,7 @@
     "bootstrap-social": "^5.1.1",
     "cross-env": "^3.2.3",
     "dotenv": "^4.0.0",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
