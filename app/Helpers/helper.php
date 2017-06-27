@@ -1,6 +1,6 @@
 <?php
 
-use App\{Investment, Revenue};
+use App\{Investment, Revenue, Log};
 
 if (!function_exists('investors'))
 {
@@ -22,8 +22,7 @@ if (!function_exists('investors'))
             /**
              * calculate sum of investment
              */
-            $pluck = array_pluck($investor, 'amount');
-            $pluck = array_sum($pluck);
+            $pluck = collect($investor)->sum('amount');
 
             /**
              * raw percentage data
@@ -70,11 +69,19 @@ if (!function_exists('revenue_diff_chart'))
 
     function revenue_diff_chart($currency)
     {
-        $revenue = Revenue::currencyType($currency)->latest()->take(90);
-        $date    = array_pluck($revenue, 'created_at');
-        $amount  = array_pluck($revenue, 'amount');
+        $revenue = Log::currencyType($currency)
+            ->latest()
+            ->take(90)
+            ->get();
 
-        return array_combine($date, $amount);
+        $chart = [];
+        foreach ($revenue as $value) {
+            $createdAt = $value->created_at->format('Y/m/d');
+
+            $chart[$createdAt] = ($chart[$createdAt] ?? 0) + $value->amount;
+        }
+
+        return $chart;
     }
 }
 
@@ -89,5 +96,14 @@ if (!function_exists('amount_output'))
         $amount = abs($amount);
 
         return sprintf($html, $color, $amount);
+    }
+}
+
+if (!function_exists('javascript'))
+{
+
+    function javascript(array $input)
+    {
+        JavaScript::put(['form' => $input]);
     }
 }
