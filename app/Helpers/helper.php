@@ -71,7 +71,7 @@ if (!function_exists('revenue_diff_chart'))
     {
         $revenue = Log::currencyType($currency)
             ->latest()
-            ->take(90)
+            ->take(30)
             ->get();
 
         $chart = [];
@@ -80,6 +80,8 @@ if (!function_exists('revenue_diff_chart'))
 
             $chart[$createdAt] = ($chart[$createdAt] ?? 0) + $value->amount;
         }
+
+        ksort($chart);
 
         return $chart;
     }
