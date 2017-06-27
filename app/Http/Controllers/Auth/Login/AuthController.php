@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Login;
 
+use Auth;
 use Socialite;
 use App\User;
 use App\Http\Controllers\Controller;
