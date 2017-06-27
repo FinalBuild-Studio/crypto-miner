@@ -18,14 +18,21 @@ class Investment extends Model
 
     protected $fillable = [
         'amount',
+        'status',
         'currency_id',
         'user_id',
         'code',
+        'expired_at',
     ];
 
     public function currency()
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function scopeValid($query)
@@ -34,7 +41,7 @@ class Investment extends Model
             ->whereDate('expired_at', '>=', Carbon::now());
     }
 
-    public function scopeUser($query, $userId)
+    public function scopeWho($query, $userId)
     {
         return $query->where('user_id', '=', $userId);
     }
@@ -42,5 +49,10 @@ class Investment extends Model
     public function scopeCurrencyType($query, $currencyId)
     {
         return $query->where('currency_id', '=', $currencyId);
+    }
+
+    public function scopeUnconfirmed($query)
+    {
+        return $query->where('status', '=', self::UNCONFIRMED);
     }
 }

@@ -16,4 +16,9 @@ class Log extends Model
     {
         return $this->belongsTo(Currency::class);
     }
+
+    public function scopeCurrencyType($query, $currencyId)
+    {
+        return $query->where('currency_id', '=', $currencyId);
+    }
 }

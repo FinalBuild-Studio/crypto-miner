@@ -13,6 +13,7 @@ class Transfer extends Model
 
     protected $fillable = [
         'amount',
+        'status',
         'currency_id',
         'user_id',
         'price_at',
@@ -35,6 +36,6 @@ class Transfer extends Model
 
     public function scopeWaiting($query)
     {
-        return $query->where('status', '=', self::WAITING);
+        return $query->where('status', '!=', self::DONE);
     }
 }
