@@ -104,6 +104,15 @@ if (!function_exists('javascript'))
 
     function javascript(array $input)
     {
-        JavaScript::put(['form' => $input]);
+        JavaScript::put($input);
+    }
+}
+
+if (!function_exists('form'))
+{
+
+    function form(array $input)
+    {
+        javascript(['form' => $input]);
     }
 }

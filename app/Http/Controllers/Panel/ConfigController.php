@@ -11,7 +11,7 @@ class ConfigController extends Controller
     {
         $user = request()->user();
 
-        javascript([
+        form([
             'name'         => $user->name,
             'bank_code'    => $user->bank_code,
             'bank_account' => $user->bank_account,
