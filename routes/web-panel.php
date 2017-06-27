@@ -2,9 +2,9 @@
 
 
 Route::resource('disclaim', DisclaimController::class, ['only' => 'index']);
-Route::resource('dashboard', DashboardController::class);
-Route::resource('revenue', RevenueController::class);
-Route::resource('investment', InvestmentController::class);
-Route::resource('wallet', WalletController::class);
-Route::resource('transfer', TransferController::class);
-Route::resource('config', ConfigController::class);
+Route::resource('dashboard', DashboardController::class, ['only' => 'index']);
+Route::resource('revenue', RevenueController::class, ['only' => 'index']);
+Route::resource('investment', InvestmentController::class, ['only' => ['index', 'store']]);
+Route::resource('wallet', WalletController::class, ['only' => 'index']);
+Route::resource('transfer', TransferController::class, ['only' => 'index']);
+Route::resource('config', ConfigController::class, ['only' => ['store', 'index']]);
