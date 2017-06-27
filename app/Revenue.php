@@ -15,6 +15,10 @@ class Revenue extends Model
         'reason_id',
     ];
 
+    protected $casts = [
+       'amount' => 'float',
+    ];
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);

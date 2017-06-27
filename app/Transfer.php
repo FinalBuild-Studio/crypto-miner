@@ -19,6 +19,10 @@ class Transfer extends Model
         'price_at',
     ];
 
+    protected $casts = [
+       'amount' => 'float',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

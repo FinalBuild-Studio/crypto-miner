@@ -25,6 +25,10 @@ class Investment extends Model
         'expired_at',
     ];
 
+    protected $casts = [
+       'amount' => 'float',
+    ];
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);

@@ -14,6 +14,10 @@ class Wallet extends Model
         'percentage',
     ];
 
+    protected $casts = [
+       'amount' => 'float',
+    ];
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);
