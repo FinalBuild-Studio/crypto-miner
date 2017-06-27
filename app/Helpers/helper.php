@@ -35,10 +35,8 @@ if (!function_exists('investors'))
             $amount += $pluck;
         }
 
-        bcscale(5);
-
         foreach ($percentage as &$value) {
-            $value = bcadd(0, $value / $amount);
+            $value = floor($value / $amount * pow(10, 5)) / pow(10, 5);
         }
 
         return $percentage;
