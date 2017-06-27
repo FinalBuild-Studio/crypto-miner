@@ -48,10 +48,10 @@ if (!function_exists('revenue_diff_percentage'))
 
     function revenue_diff_percentage($currency)
     {
-        $latest   = Revenue::currencyType($currency)
+        $latest   = Log::currencyType($currency)
             ->latest()
             ->first();
-        $previous = Revenue::currencyType($currency)
+        $previous = Log::currencyType($currency)
             ->latest()
             ->skip(1)
             ->take(1)
@@ -71,7 +71,7 @@ if (!function_exists('revenue_diff_chart'))
     {
         $revenue = Log::currencyType($currency)
             ->latest()
-            ->take(30)
+            ->take(14)
             ->get();
 
         $chart = [];
