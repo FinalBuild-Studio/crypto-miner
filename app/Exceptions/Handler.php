@@ -89,6 +89,9 @@ class Handler extends ExceptionHandler
                 ->json($error, $code);
         }
 
+        if ($code == 401) {
+            return redirect()->action('Auth\LoginController@index');
+        }
 
         return back()
             ->with('error', $message);
