@@ -22,8 +22,9 @@ class AuthController extends Controller
         $email    = $user->email;
         $uid      = $user->id;
         $platform = $provider;
-        $user     = User::firstOrCreate(compact('uid', 'platform'))
-            ->update(compact('name', 'email'));
+        $user     = User::firstOrCreate(compact('uid', 'platform'));
+
+        $user->update(compact('name', 'email'));
 
         Auth::login($user);
 
