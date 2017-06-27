@@ -86,15 +86,15 @@
             相較於昨日
             @if ($btcPercentage > 0)
               <span class="text-success">
-                <i class="fa fa-long-arrow-up"></i> {{ $btcPercentage }}%
+                <i class="fa fa-long-arrow-up"></i> {{ abs($btcPercentage) }}%
               </span>
             @elseif ($btcPercentage < 0)
               <span class="text-danger">
-                <i class="fa fa-long-arrow-down"></i> {{ $btcPercentage }}%
+                <i class="fa fa-long-arrow-down"></i> {{ abs($btcPercentage) }}%
               </span>
             @else
               <span class="text-muted">
-                <i class="fa fa-long-arrow-right"></i> {{ $btcPercentage }}%
+                <i class="fa fa-long-arrow-right"></i> {{ abs($btcPercentage) }}%
               </span>
             @endif
             的產出
@@ -114,15 +114,15 @@
             相較於昨日
             @if ($ethPercentage > 0)
               <span class="text-success">
-                <i class="fa fa-long-arrow-up"></i> {{ $ethPercentage }}%
+                <i class="fa fa-long-arrow-up"></i> {{ abs($ethPercentage) }}%
               </span>
             @elseif ($ethPercentage < 0)
               <span class="text-danger">
-                <i class="fa fa-long-arrow-down"></i> {{ $ethPercentage }}%
+                <i class="fa fa-long-arrow-down"></i> {{ abs($ethPercentage) }}%
               </span>
             @else
               <span class="text-muted">
-                <i class="fa fa-long-arrow-right"></i> {{ $ethPercentage }}%
+                <i class="fa fa-long-arrow-right"></i> {{ abs($ethPercentage) }}%
               </span>
             @endif
             的產出

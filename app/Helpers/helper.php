@@ -59,8 +59,9 @@ if (!function_exists('revenue_diff_percentage'))
 
         $latestAmount   = $latest->amount ?? 0;
         $previousAmount = $previous->amount ?? 1;
+        $diffAmount     = $latestAmount ? 1 : 0;
 
-        return round((($latestAmount / $previousAmount) - 1) * 100, 2);
+        return round((($latestAmount / $previousAmount) - $diffAmount) * 100, 2);
     }
 }
 
