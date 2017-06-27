@@ -20,11 +20,13 @@ class AuthController extends Controller
         $user     = Socialite::driver($provider)->user();
         $name     = $user->name;
         $email    = $user->email;
+        $uid      = $user->id;
         $platform = $provider;
-        $user     = User::firstOrCreate(compact('name', 'email', 'platform'));
+        $user     = User::firstOrCreate(compact('uid', 'platform'))
+            ->update(compact('name', 'email'));
 
         Auth::login($user);
 
-        return redirect()->action('DashboardController@index');
+        return redirect()->action('Panel\DashboardController@index');
     }
 }
