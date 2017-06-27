@@ -36,7 +36,7 @@ if (!function_exists('investors'))
         }
 
         foreach ($percentage as &$value) {
-            $value = round($value / $amount, 5, PHP_ROUND_HALF_DOWN);
+            $value = (float) sprintf('%.5f', $value / $amount);
         }
 
         return $percentage;
