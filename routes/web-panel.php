@@ -7,3 +7,4 @@ Route::resource('revenue', RevenueController::class);
 Route::resource('investment', InvestmentController::class);
 Route::resource('wallet', WalletController::class);
 Route::resource('transfer', TransferController::class);
+Route::resource('config', ConfigController::class);
