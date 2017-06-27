@@ -60,7 +60,7 @@ if (!function_exists('revenue_diff_percentage'))
         $latestAmount   = $latest->amount ?? 0;
         $previousAmount = $previous->amount ?? 1;
 
-        return round($latestAmount / $previousAmount * 100, 2);
+        return round((($latestAmount / $previousAmount) - 1) * 100, 2);
     }
 }
 
@@ -76,7 +76,7 @@ if (!function_exists('revenue_diff_chart'))
 
         $chart = [];
         foreach ($revenue as $value) {
-            $createdAt = $value->created_at->format('Y/m/d');
+            $createdAt = $value->created_at->format('m/d');
 
             $chart[$createdAt] = ($chart[$createdAt] ?? 0) + $value->amount;
         }
