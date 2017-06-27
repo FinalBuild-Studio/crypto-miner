@@ -21,39 +21,37 @@ class WithdrawController extends Controller
 
         $transfered = false;
         DB::transaction(function() use ($currency, &$transfered) {
-            $deposit  = [];
+            $deposit  = 0;
             $amounts  = [];
-            $revenues = Revenue::currencyType($currency->id)->get();
+            $revenues = Revenue::select(DB::raw('SUM(amount) as amount'), 'user_id')
+                ->currencyType($currency->id)
+                ->groupBy('user_id')
+                ->get();
+
+            $deposit = collect($revenues)->sum('amount');
+
             foreach ($revenues as $revenue) {
-                $amounts[$currency->id] = $amount[$currency->id] ?? [];
-                $amounts[$currency->id][$revenue->user_id] = $amount[$currency->id][$revenue->user_id] ?? [];
-                $amounts[$currency->id][$revenue->user_id] = $revenue;
+                $userId     = $revenue->user_id;
+                $amountSum  = $revenue->amount;
+                $percentage = $amountSum / $deposit;
 
-                $deposit[$currency->id]  = $deposit[$currency->id] ?? 0;
-                $deposit[$currency->id] += $revenue->amount;
-            }
+                if ($amountSum > 0) {
+                    Revenue::create([
+                        'currency_id' => $currency->id,
+                        'amount'      => - $amountSum,
+                        'user_id'     => $userId,
+                        'reason_id'   => Reason::TRANSFER,
+                        'percentage'  => $percentage,
+                    ]);
 
-            foreach ($amounts as $currencyId => $amount) {
-                foreach ($amount as $userId => $revenue) {
-                    $amountSum = collect($revenue)->sum('amount');
-                    $percentage = $sum / $deposit[$currencyId];
+                    Wallet::create([
+                        'currency_id' => $currency->id,
+                        'amount'      => $amountSum - $percentage * $currency->fee,
+                        'user_id'     => $userId,
+                        'percentage'  => $percentage,
+                    ]);
 
-                    if ($sum > 0) {
-                        Revenue::create([
-                            'currency_id' => $currencyId,
-                            'amount'      => - $amountSum,
-                            'user_id'     => $userId,
-                            'reason_id'   => Reason::TRANSFER,
-                            'percentage'  => $percentage,
-                        ]);
-
-                        Wallet::create([
-                            'currency_id' => $currencyId,
-                            'amount'      => $amountSum - $percentage * $currency->fee,
-                            'user_id'     => $userId,
-                            'percentage'  => $percentage,
-                        ]);
-                    }
+                    $deposit -= $amountSum;
                 }
             }
 

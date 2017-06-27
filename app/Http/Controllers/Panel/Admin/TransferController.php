@@ -10,10 +10,21 @@ class TransferController extends Controller
 
     public function index()
     {
-        $transfers = Transfer::wating()->latest()->paginate(10);
+        $transfers = Transfer::waiting()->latest()->paginate(10);
 
         view()->share('transfers', $transfers);
 
         return view('panel.admin.transfer');
+    }
+
+    public function update($id)
+    {
+        $status = request()->input('status');
+
+        Transfer::whereId($id)
+            ->firstOrFail()
+            ->update(compact('status'));
+
+        return back()->with('success', '待轉帳資料已經處理完畢');
     }
 }

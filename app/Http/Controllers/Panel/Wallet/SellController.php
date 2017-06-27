@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Panel\Wallet;
 
 use DB;
 use App\Exceptions\GeneralException;
-use App\{Currency, Wallet};
+use App\{Currency, Wallet, Transfer};
 use App\Http\Controllers\Controller;
 
 class SellController extends Controller
@@ -15,7 +15,7 @@ class SellController extends Controller
         $user     = request()->user();
         $currency = request()->input('currency');
         $amount   = request()->input('amount', 0);
-        $priceAt  = request()->input('price_at', -1);
+        $priceAt  = request()->input('price_at', 0);
         $currency = Currency::name($currency)->firstOrFail();
 
         if (!$currency->is_crypto) {
