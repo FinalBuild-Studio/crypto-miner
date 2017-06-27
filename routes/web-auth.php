@@ -13,5 +13,5 @@
 
 Route::resource('login', LoginController::class);
 Route::resource('logout', LogoutController::class);
-Route::get('login/auth/{provider}', 'Login\AuthController@login');
-Route::get('login/auth/{provider}/callback', 'Login\AuthController@callback');
+Route::get('login/{provider}', 'Login\AuthController@login');
+Route::get('login/{provider}/callback', 'Login\AuthController@callback');
