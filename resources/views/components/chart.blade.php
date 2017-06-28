@@ -10,7 +10,7 @@
         tension: 0
       }),
       low: 0,
-      high: {{ $data ? (max(array_values($data)) + max(array_values($data))) : 0 }},
+      high: {{ $data ? (max(array_values($data)) + max(array_values($data)) * .1) : 0 }},
       chartPadding: {
         top: 0,
         right: 0,
