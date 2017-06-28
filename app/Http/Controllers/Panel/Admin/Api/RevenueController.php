@@ -23,7 +23,7 @@ class RevenueController extends Controller
             throw new GeneralException(100);
         }
 
-        if ($amount <= 0) {
+        if ($amount <= 0 || $maintenance < 0) {
             throw new GeneralException(104);
         }
 
@@ -52,7 +52,7 @@ class RevenueController extends Controller
 
             Log::create([
                 'currency_id' => $currency->id,
-                'amount'      => $amount,
+                'amount'      => $amount - $maintenance,
             ]);
 
             $transfered = true;
