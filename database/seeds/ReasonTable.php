@@ -25,5 +25,10 @@ class ReasonTable extends Seeder
             'id'   => 3,
             'name' => '維護費用'
         ]);
+
+        DB::table('reasons')->insert([
+            'id'   => 4,
+            'name' => '轉投資'
+        ]);
     }
 }
