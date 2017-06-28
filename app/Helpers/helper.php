@@ -97,14 +97,6 @@ if (!function_exists('amount_output'))
         $color  = $amount < 0 ? 'red' : 'green';
         $color  = $amount == 0 ? 'black' : $color;
         $amount = abs($amount);
-        $pos    = strpos($amount, 'E');
-        if ($amount < 1 && $pos !== -1) {
-            $suffix = (float) substr($amount, 0, $pos);
-            $suffix = (float) str_replace('.', '', $suffix);
-            $suffix = bcadd(0, $suffix);
-            $zero   = (int) substr($amount, $pos + 2) - strlen($suffix);
-            $amount = '0.'.str_repeat('0', $zero).$suffix;
-        }
 
         return sprintf($html, $color, $amount);
     }
