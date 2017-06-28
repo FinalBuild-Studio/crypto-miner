@@ -17,8 +17,9 @@
             <thead class="text-primary">
               <tr>
                 <th class="col-md-2">類型</th>
-                <th class="col-md-4">收益</th>
-                <th class="col-md-3">分配比例</th>
+                <th class="col-md-3">收益</th>
+                <th class="col-md-2">分配比例</th>
+                <th class="col-md-2">原因</th>
                 <th class="col-md-3">入帳時間</th>
               </tr>
             </thead>
@@ -28,12 +29,13 @@
                   <td>{{ $revenue->currency->name }}</td>
                   <td>{!! amount_output($revenue->amount) !!}</td>
                   <td>{{ $revenue->percentage ? ($revenue->percentage * 100) . '%' : '-' }}</td>
+                  <td>{{ $revenue->reason->name }}</td>
                   <td>{{ $revenue->created_at->format('Y/m/d H:i:s') }}</td>
                 </tr>
               @endforeach
               @if (!$revenues->count())
                 <tr>
-                  <td colspan="4" class="text-muted text-center">沒有任何紀錄</td>
+                  <td colspan="5" class="text-muted text-center">沒有任何紀錄</td>
                 </tr>
               @endif
             </tbody>

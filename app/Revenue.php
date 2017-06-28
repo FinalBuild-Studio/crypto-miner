@@ -19,6 +19,11 @@ class Revenue extends Model
        'amount' => 'float',
     ];
 
+    public function reason()
+    {
+        return $this->belongsTo(Reason::class);
+    }
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);
