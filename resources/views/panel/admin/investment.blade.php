@@ -14,11 +14,10 @@
               <tr>
                 <th class="col-md-1">類型</th>
                 <th class="col-md-2">平台</th>
-                <th class="col-md-3">使用者</th>
+                <th class="col-md-4">使用者</th>
                 <th class="col-md-1">總額</th>
                 <th class="col-md-1">匯款後四碼</th>
                 <th class="col-md-2">建立日期</th>
-                <th class="col-md-1">狀態</th>
                 <th class="col-md-1 text-right">操作</th>
               </tr>
             </thead>
@@ -31,15 +30,6 @@
                   <td>{{ $investment->amount }}</td>
                   <td>{{ $investment->code ?? '-' }}</td>
                   <td>{{ $investment->created_at->format('Y/m/d H:i:s') }}</td>
-                  <td>
-                    @if ($investment->status == App\Investment::UNCONFIRMED)
-                      <span class="label label-warning">未確認</span>
-                    @elseif ($investment->status == App\Investment::ENABLED)
-                      <span class="label label-success">處理中</span>
-                    @else
-                      <span class="label label-danger">已過期</span>
-                    @endif
-                  </td>
                   <td class="td-actions text-right">
                     <button
                       class="btn btn-round btn-success btn-xs confirm-button"
@@ -72,7 +62,7 @@
               @endforeach
               @if (!$investments->count())
                 <tr>
-                  <td colspan="8" class="text-muted text-center">沒有任何紀錄</td>
+                  <td colspan="7" class="text-muted text-center">沒有任何紀錄</td>
                 </tr>
               @endif
             </tbody>
