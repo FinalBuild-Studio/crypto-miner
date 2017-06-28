@@ -97,7 +97,6 @@ if (!function_exists('amount_output'))
         $color  = $amount < 0 ? 'red' : 'green';
         $color  = $amount == 0 ? 'black' : $color;
         $amount = abs($amount);
-        $amount = "${amount}";
 
         return sprintf($html, $color, $amount);
     }
