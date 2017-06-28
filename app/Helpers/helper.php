@@ -103,7 +103,7 @@ if (!function_exists('amount_output'))
             $suffix = (float) str_replace('.', '', $suffix);
             $suffix = bcadd(0, $suffix);
             $zero   = (int) substr($amount, $pos + 2) - 1;
-            $amount = '0.'.str_pad('', '0', $zero).$suffix;
+            $amount = '0.'.str_pad('', $zero, '0').$suffix;
         }
 
         return sprintf($html, $color, $amount);
