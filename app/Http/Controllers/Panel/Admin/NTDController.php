@@ -12,7 +12,7 @@ class NTDController extends Controller
     {
         $email = request()->query('email');
 
-        $users = User::email($email)->get();
+        $users = User::email($email)->paginate(10);
 
         view()->share('users', $users);
 
