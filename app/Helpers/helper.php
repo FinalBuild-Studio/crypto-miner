@@ -96,7 +96,7 @@ if (!function_exists('amount_output'))
         $html   = '<font color="%s">%s</font>';
         $color  = $amount < 0 ? 'red' : 'green';
         $color  = $amount == 0 ? 'black' : $color;
-        $amount = abs($amount);
+        $amount = str_replace('-', '', $amount);
 
         return sprintf($html, $color, $amount);
     }
