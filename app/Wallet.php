@@ -14,13 +14,14 @@ class Wallet extends Model
         'percentage',
     ];
 
-    protected $casts = [
-       'amount' => 'float',
-    ];
-
     public function currency()
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    public function getAmountAttribute($value)
+    {
+        return rtrim($value, '0');
     }
 
     public function scopeWho($query, $userId)

@@ -25,10 +25,6 @@ class Investment extends Model
         'expired_at',
     ];
 
-    protected $casts = [
-       'amount' => 'float',
-    ];
-
     public function currency()
     {
         return $this->belongsTo(Currency::class);
@@ -37,6 +33,11 @@ class Investment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getAmountAttribute($value)
+    {
+        return rtrim($value, '0');
     }
 
     public function scopeValid($query)

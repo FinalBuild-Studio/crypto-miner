@@ -19,10 +19,6 @@ class Transfer extends Model
         'price_at',
     ];
 
-    protected $casts = [
-       'amount' => 'float',
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -31,6 +27,11 @@ class Transfer extends Model
     public function currency()
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    public function getAmountAttribute($value)
+    {
+        return rtrim($value, '0');
     }
 
     public function scopeWho($query, $userId)

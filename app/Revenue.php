@@ -15,10 +15,6 @@ class Revenue extends Model
         'reason_id',
     ];
 
-    protected $casts = [
-       'amount' => 'float',
-    ];
-
     public function reason()
     {
         return $this->belongsTo(Reason::class);
@@ -27,6 +23,11 @@ class Revenue extends Model
     public function currency()
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    public function getAmountAttribute($value)
+    {
+        return rtrim($value, '0');
     }
 
     public function scopeUser($query, $userId)
