@@ -67,8 +67,29 @@ $('.confirm-button').on('click', event => {
 
           var form = $(event.currentTarget);
           $.each($(form).find(':input'), (key, value) => {
-            var val = $(`*[name=${$(value).attr('name')}]`).val();
-            payload[$(value).attr('name')] = val === '' ? undefined : val;
+            $.each($(form).find(`*[name=${$(value).attr('name')}]`), (innerKey, innerValue) => {
+              var input;
+              var val = $(innerValue).val();
+              var type = $(innerValue).attr('type');
+
+              if (!isNaN(val * 1)) {
+                val = parseFloat(val);
+              }
+
+              switch (type) {
+                case 'checkbox':
+                case 'radio':
+                  if ($(innerValue).prop('checked')) {
+                    input = val;
+                  }
+                  break;
+                default:
+                  input = val;
+                  break;
+              }
+
+              payload[$(innerValue).attr('name')] = input;
+            });
           });
 
           $.ajax({
@@ -92,14 +113,14 @@ $('.confirm-button').on('click', event => {
         if (actionMethod === 'POST' || actionMethod === 'GET') {
           $(modal).find('#confirm-modal-form-method-template-target').html('');
         } else {
-          var formMethodTemplate = $('#modal').find('#confirm-modal-form-method-template').html();
+          var formMethodTemplate = $(modal).find('#confirm-modal-form-method-template').html();
           $(modal)
             .find('#confirm-modal-form-method-template-target')
             .html(formMethodTemplate.replace(/\$method/g, actionMethod));
         }
 
         payload._token = document.head.querySelector('meta[name="csrf-token"]').content;
-        var payloadTempalte = $('#modal').find('#confirm-modal-payload-template').html();
+        var payloadTempalte = $(modal).find('#confirm-modal-payload-template').html();
         var payloads = Object.keys(payload)
           .map(function(key) {
             var field = payloadTempalte;
