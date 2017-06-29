@@ -48,18 +48,17 @@ if (!function_exists('revenue_diff_percentage'))
 
     function revenue_diff_percentage($currency)
     {
-        $latest   = Log::currencyType($currency)
-            ->latest()
-            ->first();
-        $previous = Log::currencyType($currency)
-            ->latest()
-            ->skip(1)
-            ->take(1)
-            ->first();
+        $day = Log::currencyType($currency)->latest()->first()->created_at;
 
-        $latestAmount   = $latest->amount ?? 0;
-        $previousAmount = $previous->amount ?? 1;
-        $diffAmount     = $latestAmount ? 1 : 0;
+        $latestAmount = Log::currencyType($currency)
+            ->whereDate('created_at', '=', $day)
+            ->sum('amount');
+
+        $previousAmount = Log::currencyType($currency)
+            ->whereDate('created_at', '=', $day->subDay())
+            ->sum('amount') ?: 1;
+
+        $diffAmount = $latestAmount ? 1 : 0;
 
         return round((($latestAmount / $previousAmount) - $diffAmount) * 100, 2);
     }
