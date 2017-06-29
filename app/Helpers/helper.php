@@ -48,14 +48,14 @@ if (!function_exists('revenue_diff_percentage'))
 
     function revenue_diff_percentage($currency)
     {
-        $day = Log::currencyType($currency)->latest()->first()->created_at;
+        $day = revenue_chart_day($currency);
 
         $latestAmount = Log::currencyType($currency)
-            ->whereDate('created_at', '=', $day)
+            ->whereDate('created_at', '=', $day->toDateString())
             ->sum('amount');
 
         $previousAmount = Log::currencyType($currency)
-            ->whereDate('created_at', '=', $day->subDay())
+            ->whereDate('created_at', '=', $day->subDay()->toDateString())
             ->sum('amount') ?: 1;
 
         $diffAmount = $latestAmount ? 1 : 0;
@@ -64,14 +64,25 @@ if (!function_exists('revenue_diff_percentage'))
     }
 }
 
+if (!function_exists('revenue_chart_day'))
+{
+
+    function revenue_chart_day($currency)
+    {
+        return Log::currencyType($currency)->latest()->first()->created_at;
+    }
+}
+
 if (!function_exists('revenue_diff_chart'))
 {
 
     function revenue_diff_chart($currency)
     {
+        $twoWeeks = revenue_chart_day($currency)->subDays(14)->toDateString();
+
         $revenue = Log::currencyType($currency)
             ->latest()
-            ->take(14)
+            ->whereDate('created_at', '>=', $twoWeeks)
             ->get();
 
         $chart = [];
