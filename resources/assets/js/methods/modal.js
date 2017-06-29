@@ -68,7 +68,7 @@ $('.confirm-button').on('click', event => {
           var form = $(event.currentTarget);
           $.each($(form).find(':input'), (key, value) => {
             var val = $(`*[name=${$(value).attr('name')}]`).val();
-            payload[$(value).attr('name')] = val;
+            payload[$(value).attr('name')] = val === '' ? undefined : val;
           });
 
           $.ajax({
