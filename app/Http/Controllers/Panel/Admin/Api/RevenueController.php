@@ -52,7 +52,7 @@ class RevenueController extends Controller
 
             Log::create([
                 'currency_id' => $currency->id,
-                'amount'      => $amount,
+                'amount'      => $amount - $maintenance,
             ]);
 
             $transfered = true;
