@@ -24,7 +24,7 @@
         </div>
         <div class="card-content">
           <p class="category">持有</p>
-          <h3 class="title">{{ rtrim($twdWallet, '0') }} <small>TWD</small></h3>
+          <h3 class="title">{{ rtrim($twdWallet, '0') ?: 0 }} <small>TWD</small></h3>
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="card-content">
           <p class="category">未確認</p>
-          <h3 class="title">{{ rtrim($eth, '0') }} <small>ETH</small></h3>
+          <h3 class="title">{{ rtrim($eth, '0') ?: 0 }} <small>ETH</small></h3>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="card-content">
           <p class="category">持有</p>
-          <h3 class="title">{{ rtrim($ethWallet, '0') }} <small>ETH</small></h3>
+          <h3 class="title">{{ rtrim($ethWallet, '0') ?: 0 }} <small>ETH</small></h3>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="card-content">
           <p class="category">未確認</p>
-          <h3 class="title">{{ rtrim($btc, '0') }} <small>BTC</small></h3>
+          <h3 class="title">{{ rtrim($btc, '0') ?: 0 }} <small>BTC</small></h3>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
         </div>
         <div class="card-content">
           <p class="category">持有</p>
-          <h3 class="title">{{ rtrim($btcWallet, '0') }} <small>BTC</small></h3>
+          <h3 class="title">{{ $btcWallet ? rtrim($btcWallet, '0') : 0 }} <small>BTC</small></h3>
         </div>
       </div>
     </div>
