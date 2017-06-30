@@ -67,29 +67,29 @@ $('.confirm-button').on('click', event => {
 
           var form = $(event.currentTarget);
           $.each($(form).find(':input'), (key, value) => {
-            $.each($(form).find(`*[name=${$(value).attr('name')}]`), (innerKey, innerValue) => {
-              var input;
-              var val = $(innerValue).val();
-              var type = $(innerValue).attr('type');
+            var input;
+            var val = $(value).val();
+            var type = $(value).attr('type');
 
-              if (!isNaN(val * 1)) {
-                val = parseFloat(val);
-              }
+            if (!isNaN(val * 1)) {
+              val = parseFloat(val);
+            }
 
-              switch (type) {
-                case 'checkbox':
-                case 'radio':
-                  if ($(innerValue).prop('checked')) {
-                    input = val;
-                  }
-                  break;
-                default:
+            switch (type) {
+              case 'checkbox':
+              case 'radio':
+                if ($(value).prop('checked')) {
                   input = val;
-                  break;
-              }
+                }
+                break;
+              default:
+                input = val;
+                break;
+            }
 
-              payload[$(innerValue).attr('name')] = input;
-            });
+            if (input) {
+              payload[$(value).attr('name')] = input;
+            }
           });
 
           $.ajax({
