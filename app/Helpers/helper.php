@@ -36,10 +36,28 @@ if (!function_exists('investors'))
         }
 
         foreach ($percentage as &$value) {
-            $value = floor($value / $amount * pow(10, 5)) / pow(10, 5);
+            $value = percentage($value, $amount);
         }
 
         return $percentage;
+    }
+}
+
+if (!function_exists('percentage'))
+{
+
+    function percentage($child, $mother)
+    {
+        return floor($child / $mother * pow(10, 5)) / pow(10, 5);;
+    }
+}
+
+if (!function_exists('decimal_mul'))
+{
+
+    function decimal_mul($valueA, $valueB)
+    {
+        return number_format($valueA * $valueB, decimal($valueA) + decimal($valueB));
     }
 }
 

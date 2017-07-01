@@ -29,27 +29,20 @@ class RevenueController extends Controller
 
         $transfered = false;
         DB::transaction(function() use ($currency, $amount, $maintenance, &$transfered) {
-            $amountDecimal      = decimal($amount);
-            $maintenanceDecimal = decimal($maintenance);
-            $percentages        = investors($currency->id);
+            $percentages = investors($currency->id);
             foreach ($percentages as $userId => $percentage) {
-                $percentageDecimal = decimal($percentage);
-                $userAmount        = number_format($amount * $percentage, $amountDecimal + $percentageDecimal);
-
                 Revenue::create([
                     'currency_id' => $currency->id,
-                    'amount'      => $userAmount,
+                    'amount'      => decimal_mul($amount, $percentage),
                     'user_id'     => $userId,
                     'percentage'  => $percentage,
                     'reason_id'   => Reason::REVENUE,
                 ]);
 
                 if ($maintenance > 0) {
-                    $userMaintenance = number_format($maintenance * $percentage, $maintenanceDecimal + $percentageDecimal);
-
                     Revenue::create([
                         'currency_id' => $currency->id,
-                        'amount'      => - $userMaintenance,
+                        'amount'      => - decimal_mul($maintenance, $percentage),
                         'user_id'     => $userId,
                         'percentage'  => $percentage,
                         'reason_id'   => Reason::MAINTENANCE,

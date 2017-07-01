@@ -33,7 +33,7 @@ class WithdrawController extends Controller
             foreach ($revenues as $revenue) {
                 $userId     = $revenue->user_id;
                 $amountSum  = $revenue->amount;
-                $percentage = $amountSum / $deposit;
+                $percentage = percentage($amountSum, $deposit);
 
                 if ($amountSum > 0) {
                     Revenue::create([
@@ -46,7 +46,7 @@ class WithdrawController extends Controller
 
                     Wallet::create([
                         'currency_id' => $currency->id,
-                        'amount'      => $amountSum - $percentage * $currency->fee,
+                        'amount'      => $amountSum - decimal_mul($currency->fee, $percentage),
                         'user_id'     => $userId,
                         'percentage'  => $percentage,
                     ]);
