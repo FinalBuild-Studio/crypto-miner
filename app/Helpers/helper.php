@@ -129,3 +129,12 @@ if (!function_exists('form'))
         javascript(['form' => $input]);
     }
 }
+
+if (!function_exists('decimal'))
+{
+
+    function decimal($value)
+    {
+        return strlen(substr(rtrim($value, '0'), strpos(rtrim($value, '0'), '.') + 1));
+    }
+}
