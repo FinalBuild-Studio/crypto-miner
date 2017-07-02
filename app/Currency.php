@@ -26,7 +26,7 @@ class Currency extends Model
         return $query->where('name', '=', $name);
     }
 
-    public function scopeCrypto()
+    public function scopeCrypto($query)
     {
         return $query->where('is_crypto', '=', true);
     }
