@@ -12,4 +12,4 @@ npm run prod
 ```
 
 ## Author
-@michael34435[at]capslock.tw
+@michael34435
