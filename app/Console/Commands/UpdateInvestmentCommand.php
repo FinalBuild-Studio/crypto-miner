@@ -19,7 +19,7 @@ class UpdateInvestmentCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update investment status';
 
     /**
      * Create a new command instance.
