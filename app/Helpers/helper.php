@@ -160,11 +160,22 @@ if (!function_exists('decimal'))
 
             if ($exp < 0) {
                 $value = '0.' . str_repeat('0', - ($exp + 1)) . $num;
-            } elseif($exp > 0) {
+            } elseif ($exp > 0) {
                 $value = $num . str_repeat('0', $exp);
             }
         }
 
         return strlen(substr(rtrim($value, '0'), strpos(rtrim($value, '0'), '.') + 1));
+    }
+}
+
+if (!function_exists('decimal_value'))
+{
+
+    function decimal_value($value)
+    {
+        $value = rtrim($value, '0');
+
+        return substr($value, -1) === '.' ? substr($value, 0, -1) : $value;
     }
 }

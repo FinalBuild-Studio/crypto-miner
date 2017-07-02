@@ -37,7 +37,7 @@ class Investment extends Model
 
     public function getAmountAttribute($value)
     {
-        return rtrim($value, '0');
+        return decimal_value($value);
     }
 
     public function scopeValid($query)
