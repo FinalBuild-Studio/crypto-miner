@@ -12,6 +12,11 @@ class Log extends Model
         'amount',
     ];
 
+    public function getAmountAttribute($value)
+    {
+        return decimal_value($value);
+    }
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);
