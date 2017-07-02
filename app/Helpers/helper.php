@@ -153,6 +153,16 @@ if (!function_exists('decimal'))
 
     function decimal($value)
     {
+        $strfloat = strtolower((string) ($value));
+        $nodec    = str_replace('.', '', $strfloat);
+        list($num, $exp) = explode("e", $nodec);
+
+        if ($exp < 0) {
+            $value = '0.' . ('0' * - ($exp + 1)) . $num;
+        } elseif($exp > 0) {
+            $value = $num . ('0' * $exp);
+        }
+
         return strlen(substr(rtrim($value, '0'), strpos(rtrim($value, '0'), '.') + 1));
     }
 }
