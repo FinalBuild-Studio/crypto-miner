@@ -151,7 +151,7 @@ if (!function_exists('form'))
 if (!function_exists('decimal'))
 {
 
-    function decimal1($value)
+    function decimal($value)
     {
         if (strrpos($value, 'E') > -1) {
             $nodec = str_replace('.', '', $value);
