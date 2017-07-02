@@ -42,7 +42,8 @@ class Investment extends Model
 
     public function scopeValid($query)
     {
-        return $query->whereNotNull('expired_at')
+        return $query
+            ->whereNotNull('expired_at')
             ->whereDate('expired_at', '>=', Carbon::now());
     }
 
