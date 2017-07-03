@@ -87,7 +87,15 @@ class SellCommand extends Command
             $this->comment($currency->name.': '.$total);
 
             if ($total > $currency->min_sell) {
-                exec('node '.base_path("scripts/sell.js").' '.$currency->name.' '.$total);
+                $shell = '';
+
+                switch (PHP_OS) {
+                    case 'Linux':
+                        $shell = 'xvfb-run ';
+                        break;
+                }
+
+                exec($shell.'node '.base_path("scripts/sell.js").' '.$currency->name.' '.$total);
 
                 foreach ($transfers as $transfer) {
                     $transfer->update([
