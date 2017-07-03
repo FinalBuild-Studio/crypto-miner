@@ -22,10 +22,6 @@ class SellController extends Controller
             throw new GeneralException(100);
         }
 
-        if ($currency->min_sell > $amount && $priceAt > 0) {
-            throw new GeneralException(102);
-        }
-
         $wallet = Wallet::who($user->id)
             ->currencyType($currency->id)
             ->sum('amount');

@@ -17,6 +17,7 @@ class Transfer extends Model
         'currency_id',
         'user_id',
         'price_at',
+        'twd_price',
     ];
 
     public function user()
@@ -30,6 +31,11 @@ class Transfer extends Model
     }
 
     public function getAmountAttribute($value)
+    {
+        return decimal_value($value);
+    }
+
+    public function getTwdPriceAttribute($value)
     {
         return decimal_value($value);
     }

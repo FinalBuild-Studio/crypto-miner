@@ -7,6 +7,7 @@
         "doctrine/dbal": "^2.5",
         "florianv/laravel-swap": "^1.1",
         "illuminated/console-mutex": "^1.4",
+        "kitetail/zttp": "^0.1.0",
         "laracasts/utilities": "^2.1",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",

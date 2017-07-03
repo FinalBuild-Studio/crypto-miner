@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "71d91daf96b2facbdb64e1b365c22941",
+    "content-hash": "0a0724d3b35baf94703ffbaa1b6b55d5",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -1278,6 +1278,50 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "kitetail/zttp",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kitetail/zttp.git",
+                "reference": "a48e984d5937b85599848b75845818a8fa55f1a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kitetail/zttp/zipball/a48e984d5937b85599848b75845818a8fa55f1a5",
+                "reference": "a48e984d5937b85599848b75845818a8fa55f1a5",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Zttp.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                }
+            ],
+            "description": "A super simple HTTP client that seems fine.",
+            "keywords": [
+                "Guzzle",
+                "http"
+            ],
+            "time": "2017-05-26T14:33:49+00:00"
         },
         {
             "name": "laracasts/utilities",
@@ -5052,7 +5096,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.4"
+        "php": ">=7.0.0"
     },
     "platform-dev": []
 }

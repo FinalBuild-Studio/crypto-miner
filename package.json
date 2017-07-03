@@ -22,6 +22,7 @@
     "lodash": "^4.17.4",
     "material-modal": "^0.1.2",
     "nightmare": "^2.10.0",
+    "otpauth": "^2.2.4",
     "url-query": "^2.0.0"
   },
   "dependencies": {}

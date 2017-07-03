@@ -16,9 +16,10 @@
           <table class="table">
             <thead class="text-primary">
               <tr>
-                <th class="col-md-2">類型</th>
-                <th class="col-md-6">總額</th>
-                <th class="col-md-3">賣點</th>
+                <th class="col-md-1">類型</th>
+                <th class="col-md-4">總額</th>
+                <th class="col-md-2">賣點</th>
+                <th class="col-md-2">實際賣價</th>
                 <th class="col-md-3">狀態</th>
               </tr>
             </thead>
@@ -28,6 +29,7 @@
                   <td>{{ $transfer->currency->name }}</td>
                   <td>{!! amount_output($transfer->amount) !!}</td>
                   <td>{{ $transfer->price_at }}</td>
+                  <td>{{ $transfer->twd_price ?? '-' }}</td>
                   <td>
                     @if ($transfer->status == App\Transfer::WAITING)
                       <span class="label label-warning">待處理</span>
@@ -41,7 +43,7 @@
               @endforeach
               @if (!$transfers->count())
                 <tr>
-                  <td colspan="4" class="text-muted text-center">沒有任何紀錄</td>
+                  <td colspan="5" class="text-muted text-center">沒有任何紀錄</td>
                 </tr>
               @endif
             </tbody>
