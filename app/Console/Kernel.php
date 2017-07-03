@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('investment:update')->hourly();
+        $schedule->command('transfer:update')->quarterly();
     }
 
     /**
