@@ -39,7 +39,10 @@ class SellCommand extends Command
      */
     public function handle()
     {
-        $transfers = Transfer::waiting()->where('amount', '>', 0)->get();
+        $transfers = Transfer::waiting()
+            ->where('amount', '>', 0)
+            ->where('price_at', '>=', 0)
+            ->get();
 
         $price      = [];
         $currencies = [];
