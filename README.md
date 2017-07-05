@@ -1,9 +1,12 @@
 crypto-miner
 ---
 
-## Info
-This is a management platform for crypto currency(i.e: Bitcoin or other altcoin) miner.  
-You can save withdraw or revenue record easily ;)
+## Screenshot
+![Alt text](screenshot.png)
+
+## Description
+This is a management platform for crypto currency(i.e: Bitcoin or other altcoin).  
+You can save withdrawal or revenue record easily ;)
 
 ## How to install
 ```bash
