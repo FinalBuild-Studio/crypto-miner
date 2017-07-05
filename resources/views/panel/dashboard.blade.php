@@ -31,7 +31,7 @@
     <div class="col-lg-6">
       <div class="card card-stats">
         <div class="card-header" data-background-color="green">
-          <i class="material-icons">store</i>
+          <i class="material-icons">attach_money</i>
         </div>
         <div class="card-content">
           <p class="category">未確認</p>
@@ -42,7 +42,7 @@
     <div class="col-lg-6">
       <div class="card card-stats">
         <div class="card-header" data-background-color="green">
-          <i class="material-icons">store</i>
+          <i class="material-icons">attach_money</i>
         </div>
         <div class="card-content">
           <p class="category">持有</p>
@@ -68,7 +68,29 @@
         </div>
         <div class="card-content">
           <p class="category">持有</p>
-          <h3 class="title">{{ $btcWallet ? rtrim($btcWallet, '0') : 0 }} <small>BTC</small></h3>
+          <h3 class="title">{{ rtrim($btcWallet, '0') ?: 0 }} <small>BTC</small></h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card card-stats">
+        <div class="card-header" data-background-color="default">
+          <i class="material-icons">attach_money</i>
+        </div>
+        <div class="card-content">
+          <p class="category">密碼幣估值(未確認)</p>
+          <h3 class="title">{{ round(crypto_sum(['BTC' => $btc, 'ETH' => $eth]) ?: 0) }} <small>TWD</small></h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card card-stats">
+        <div class="card-header" data-background-color="default">
+          <i class="material-icons">attach_money</i>
+        </div>
+        <div class="card-content">
+          <p class="category">密碼幣估值(持有)</p>
+          <h3 class="title">{{ round(crypto_sum(['BTC' => $btcWallet, 'ETH' => $ethWallet]) ?: 0) }} <small>TWD</small></h3>
         </div>
       </div>
     </div>
