@@ -1,5 +1,6 @@
 <?php
 
+use Zttp\Zttp;
 use App\{Investment, Revenue, Log};
 
 if (!function_exists('investors'))
@@ -177,5 +178,36 @@ if (!function_exists('decimal_value'))
         $value = rtrim($value, '0');
 
         return substr($value, -1) === '.' ? substr($value, 0, -1) : $value;
+    }
+}
+
+if (!function_exists('crypto_value'))
+{
+
+    function crypto_value($type)
+    {
+        $type = strtolower($type);
+
+        switch ($type) {
+            case 'btc':
+            case 'eth':
+                return Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+        }
+
+        return 0;
+    }
+}
+
+if (!function_exists('crypto_sum'))
+{
+
+    function crypto_sum(array $crypto)
+    {
+        $sum = 0;
+        foreach ($crypto as $type => $value) {
+            $sum += (crypto_value($type) * (rtrim($value, '0') ?: 0));
+        }
+
+        return $sum;;
     }
 }

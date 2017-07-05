@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use Zttp\Zttp;
 use App\{Transfer, Currency, Wallet};
 use Illuminate\Console\Command;
 
@@ -39,7 +38,10 @@ class SellCommand extends Command
      */
     public function handle()
     {
-        $transfers = Transfer::waiting()->where('amount', '>', 0)->get();
+        $transfers = Transfer::waiting()
+            ->where('amount', '>', 0)
+            ->where('price_at', '>=', 0)
+            ->get();
 
         $price      = [];
         $currencies = [];
@@ -47,8 +49,8 @@ class SellCommand extends Command
         $handle     = [];
 
         $this->line('取得目前賣價...');
-        $price[Currency::ETH] = Zttp::get('https://www.maicoin.com/api/prices/eth-twd')->json()['raw_sell_price'] / 100000;
-        $price[Currency::BTC] = Zttp::get('https://www.maicoin.com/api/prices/btc-twd')->json()['raw_sell_price'] / 100000;
+        $price[Currency::ETH] = crypto_value('ETH');
+        $price[Currency::BTC] = crypto_value('BTC');
         $this->info('已經取得目前賣價!');
 
         $this->line('處理請求中的訂單...');
@@ -84,7 +86,15 @@ class SellCommand extends Command
             $this->comment($currency->name.': '.$total);
 
             if ($total > $currency->min_sell) {
-                exec('node '.base_path("scripts/sell.js").' '.$currency->name.' '.$total);
+                $shell = '';
+
+                switch (PHP_OS) {
+                    case 'Linux':
+                        $shell = 'xvfb-run ';
+                        break;
+                }
+
+                exec($shell.'node '.base_path("scripts/sell.js").' '.$currency->name.' '.$total);
 
                 foreach ($transfers as $transfer) {
                     $transfer->update([
