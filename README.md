@@ -10,6 +10,7 @@ You can save withdrawal or revenue record easily ;)
 
 ## Requirements
 * PHP70
+* Node.js 8.0 and npm
 
 ## How to install
 ```bash
