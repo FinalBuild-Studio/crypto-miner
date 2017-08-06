@@ -1,6 +1,7 @@
 <?php
 
 use Zttp\Zttp;
+use Carbon\Carbon;
 use App\{Investment, Revenue, Log};
 
 if (!function_exists('investors'))
@@ -88,7 +89,7 @@ if (!function_exists('revenue_chart_day'))
 
     function revenue_chart_day($currency)
     {
-        return Log::currencyType($currency)->latest()->first()->created_at;
+        return Log::currencyType($currency)->latest()->first()->created_at ?? Carbon::now();
     }
 }
 
