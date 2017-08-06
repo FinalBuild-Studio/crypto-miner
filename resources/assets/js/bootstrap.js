@@ -10,6 +10,7 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
     require('bootstrap');
+    require('select2');
     require('./dashboard/material');
     require('./dashboard/material-dashboard');
     require('./dashboard/bootstrap-notify');

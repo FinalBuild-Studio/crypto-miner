@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use DB;
-use App\{Revenue, User, Reason};
+use App\{Revenue, User, Reason, Currency};
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 
@@ -25,9 +25,10 @@ class RevenueController extends Controller
         $user      = request()->user();
         $recipient = request()->input('recipient');
         $amount    = request()->input('amount');
-        $type      = request()->input('type');
+        $currency  = request()->input('currency');
+        $currency  = Currency::name($currency)->firstOrFail();
 
-        $total = Revenue::user($user->id)->currencyType($type)->sum('amount');
+        $total = Revenue::user($user->id)->currencyType($currency->id)->sum('amount');
 
         if ($amount > $total || $amount < 0) {
             throw new GeneralException(101);
@@ -35,18 +36,18 @@ class RevenueController extends Controller
 
         $recipient = User::whereId($recipient)->firstOrFail();
 
-        DB::transaction(function() use ($user, $recipient, $type, $amount) {
+        DB::transaction(function() use ($user, $recipient, $currency, $amount) {
             Revenue::create([
                 'user_id'     => $user->id,
                 'amount'      => - $amount,
-                'currency_id' => $type,
+                'currency_id' => $currency->id,
                 'reason_id'   => Reason::SEND,
             ]);
 
-            Reason::create([
+            Revenue::create([
                 'user_id'     => $recipient->id,
                 'amount'      => $amount,
-                'currency_id' => $type,
+                'currency_id' => $currency->id,
                 'reason_id'   => Reason::RECEIVE,
             ]);
         });

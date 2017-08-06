@@ -7,10 +7,52 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card card-nav-tabs">
         <div class="card-header" data-background-color="blue">
-          <h4 class="title">收益明細列表</h4>
-          <p class="category">此列表為詳細收益紀錄，但是不代表實際上的收入，實際上的收入請以 <a href="{{ action('Panel\WalletController@index') }}">錢包紀錄</a> 為準</p>
+          <div class="nav-tabs-wrapper">
+            <span class="nav-tabs-title">操作:</span>
+            <ul class="nav nav-tabs" data-tabs="tabs">
+              <li>
+                <a
+                  href="#"
+                  aria-expanded="false"
+                  class="confirm-button"
+                  data-method="POST"
+                  data-title="請輸入想要轉讓的對象"
+                  data-message="{{ '
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="currency" value="ETH" required>
+                          <span class="circle"></span>
+                          <span class="check"></span> ETH
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="currency" value="BTC" required>
+                          <span class="circle"></span>
+                          <span class="check"></span> BTC
+                        </label>
+                      </div>
+                      <div class="form-group label-floating is-empty">
+                        <label class="control-label">單位</label>
+                        <input type="number" step="0.00000000001" name="amount" class="form-control" required>
+                        <span class="material-input"></span>
+                      </div>
+                      <div class="form-group">
+                        <select class="member-search form-control" type="text" name="recipient" required>
+                          '.member_search_options().'
+                        <select>
+                        <span class="material-input"></span>
+                      </div>' }}"
+                >
+                  <i class="material-icons">attach_money</i>
+                    轉讓
+                  <div class="ripple-container"></div>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="card-content table-responsive">
           <table class="table">

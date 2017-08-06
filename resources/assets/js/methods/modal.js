@@ -1,5 +1,5 @@
 var confirmModalTempalte = '' +
-  '<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true" style="display: none;">' +
+  '<div class="modal fade" id="modal" role="dialog" aria-labelledby="modal-label" aria-hidden="true" style="display: none;">' +
     '<div class="modal-dialog">' +
       '<div class="modal-content">' +
         '<div class="modal-header">' +
@@ -60,6 +60,7 @@ $('.confirm-button').on('click', event => {
 
   $('#modal').on('show.bs.modal', e => {
     var modal = $(e.currentTarget);
+    $(modal).find('select').select2({ width: '100%' });
     $(modal).find('.confirm').on('click', event => {
       if (isThoughAjax) {
         $(modal).find('form').on('submit', event => {
