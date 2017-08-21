@@ -27,13 +27,13 @@ class DashboardController extends Controller
         /**
          * ETH
          */
-        $eth       = Revenue::user($user->id)->currencyType(Currency::ETH)->sum('amount');
+        $eth       = Revenue::who($user->id)->currencyType(Currency::ETH)->sum('amount');
         $ethWallet = Wallet::who($user->id)->currencyType(Currency::ETH)->sum('amount');
 
         /**
          * BTC
          */
-        $btc       = Revenue::user($user->id)->currencyType(Currency::BTC)->sum('amount');
+        $btc       = Revenue::who($user->id)->currencyType(Currency::BTC)->sum('amount');
         $btcWallet = Wallet::who($user->id)->currencyType(Currency::BTC)->sum('amount');
 
         /**

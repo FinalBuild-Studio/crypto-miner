@@ -2,7 +2,7 @@
 
 use Zttp\Zttp;
 use Carbon\Carbon;
-use App\{Investment, Revenue, Log};
+use App\{Investment, Revenue, Log, User};
 
 if (!function_exists('investors'))
 {
@@ -219,10 +219,38 @@ if (!function_exists('member_search_options'))
     function member_search_options()
     {
         $options = '<option>請輸入要轉讓的對象</option>';
-        foreach (App\User::all() as $user) {
+        foreach (User::all() as $user) {
             $options .= '<option value="'.$user->id.'">'.$user->email.'</option>';
         }
 
         return $options;
+    }
+}
+
+if (!function_exists('annual_revenue'))
+{
+
+    function annual_revenue(User $user)
+    {
+        $revenue = $user->revenue->reverse()->take(1)->first();
+
+        $date = $revenue->created_at;
+
+        $revenues = Revenue::user($user->id)->whereDate('created_at', '=', $date->toDateString())->get();
+
+        $type  = [];
+        $total = 0;
+        foreach ($revenues as $value) {
+            $currencyId   = $value->currency->id;
+            $currencyName = $value->currency->name;
+
+            $type[$currencyId] = $type[$currencyId] ?? crypto_value($currencyName);
+
+            $total += $type[$currencyId] * $value->amount;
+        }
+
+        $investments = Swap::latest('USD/TWD')->getValue() * Investment::who($user->id)->valid()->sum('amount');
+
+        return round((($total * 365 - $investments) / $investments) * 100, 8);
     }
 }

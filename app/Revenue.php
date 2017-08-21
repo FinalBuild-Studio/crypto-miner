@@ -30,7 +30,7 @@ class Revenue extends Model
         return decimal_value($value);
     }
 
-    public function scopeUser($query, $userId)
+    public function scopeWho($query, $userId)
     {
         return $query->where('user_id', '=', $userId);
     }

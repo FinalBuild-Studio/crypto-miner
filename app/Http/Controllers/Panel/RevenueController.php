@@ -13,7 +13,7 @@ class RevenueController extends Controller
     public function index()
     {
         $user     = request()->user();
-        $revenues = Revenue::user($user->id)->latest()->paginate(10);
+        $revenues = Revenue::who($user->id)->latest()->paginate(10);
 
         view()->share('revenues', $revenues);
 
@@ -28,7 +28,7 @@ class RevenueController extends Controller
         $currency  = request()->input('currency');
         $currency  = Currency::name($currency)->firstOrFail();
 
-        $total = Revenue::user($user->id)->currencyType($currency->id)->sum('amount');
+        $total = Revenue::who($user->id)->currencyType($currency->id)->sum('amount');
 
         if ($amount > $total || $amount < 0) {
             throw new GeneralException(101);

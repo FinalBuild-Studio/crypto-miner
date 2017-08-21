@@ -94,6 +94,17 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-12">
+      <div class="card card-stats">
+        <div class="card-header" data-background-color="red">
+          <i class="material-icons">show_chart</i>
+        </div>
+        <div class="card-content">
+          <p class="category">年投資報酬率(ROI)</p>
+          <h3 class="title">{{ annual_revenue(Auth::user()) }} <small>%</small></h3>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="row">
