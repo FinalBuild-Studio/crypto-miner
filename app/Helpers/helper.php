@@ -236,7 +236,7 @@ if (!function_exists('annual_revenue'))
 
         $date = $revenue->created_at;
 
-        $revenues = Revenue::user($user->id)->whereDate('created_at', '=', $date->toDateString())->get();
+        $revenues = Revenue::who($user->id)->whereDate('created_at', '=', $date->toDateString())->get();
 
         $type  = [];
         $total = 0;

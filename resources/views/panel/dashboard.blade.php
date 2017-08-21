@@ -101,7 +101,7 @@
         </div>
         <div class="card-content">
           <p class="category">年投資報酬率(ROI)</p>
-          <h3 class="title">{{ annual_revenue(request()->user()) }} <small>%</small></h3>
+          <h3 class="title">{{ annual_revenue(Auth::user()) }} <small>%</small></h3>
         </div>
       </div>
     </div>
