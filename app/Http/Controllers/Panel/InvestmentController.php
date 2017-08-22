@@ -31,7 +31,7 @@ class InvestmentController extends Controller
             throw new GeneralException(100);
         }
 
-        if (fmod($amount, $currency->unit_price) !== 0 && $amount > 0) {
+        if (fmod($amount, $currency->unit_price) != 0 && $amount > 0) {
             throw new GeneralException(103);
         }
 
