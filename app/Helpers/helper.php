@@ -257,6 +257,6 @@ if (!function_exists('annual_revenue'))
 
         $investments = Swap::latest('USD/TWD')->getValue() * Investment::who($user->id)->valid()->sum('amount');
 
-        return round((($total * 365 - $investments) / $investments) * 100, 8);
+        return round((($total * 365 - $investments) / $investments ?: 1) * 100, 8);
     }
 }
