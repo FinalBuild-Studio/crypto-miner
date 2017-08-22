@@ -185,7 +185,7 @@ if (!function_exists('decimal_value'))
 if (!function_exists('crypto_value'))
 {
 
-    function crypto_value1($type)
+    function crypto_value($type)
     {
         try {
             $type = strtolower($type);
