@@ -185,7 +185,7 @@ if (!function_exists('decimal_value'))
 if (!function_exists('crypto_value'))
 {
 
-    function crypto_value($type)
+    function crypto_value1($type)
     {
         try {
             $type = strtolower($type);
@@ -196,9 +196,11 @@ if (!function_exists('crypto_value'))
                 switch ($type) {
                     case 'dash':
                         $price = Zttp::get('https://poloniex.com/public?command=returnTicker')->json()['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
+                        break;
                     case 'btc':
                     case 'eth':
                         $price = Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+                        break;
                 }
 
                 Redis::set('price:'.$type, $price);
