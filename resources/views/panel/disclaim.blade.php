@@ -37,7 +37,7 @@
             <li>追加訂單之後，請使用匯款/面給方式，匯款完成請提供匯款後四以及金額給<a href="https://www.messenger.com/t/michael34435">我</a>，等到確定生效我會幫你勾選確認</li>
             <li>匯款資料: 805 03900410020799 戶名 官承翰</li>
             <li>根據當日的獲益情況，會隨時調整礦池內容，確保能獲得最大產出</li>
-            <li>一單位的比特幣挖礦為USD {{ App\Currency::name('BTC')->first()->unit_price }}，一單位的以太幣挖礦為USD {{ App\Currency::name('ETH')->first()->unit_price }}</li>
+            <li>挖礦單位價格(USD): BTC: {{ App\Currency::name('BTC')->first()->unit_price }} / ETH: {{ App\Currency::name('ETH')->first()->unit_price }} / DASH: {{ App\Currency::name('DASH')->first()->unit_price }}</li>
             <li>計算方式為: CEIL(<font color="red">{{ round(Swap::latest('USD/TWD')->getValue(), 2) }}</font> + 0.5) * 單位價錢 * 單位，如果單位很大很介意0.1或是0.2差距再說</li>
           </ul>
         </div>
