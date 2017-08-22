@@ -190,6 +190,8 @@ if (!function_exists('crypto_value'))
         $type = strtolower($type);
 
         switch ($type) {
+            case 'dash':
+                return Zttp::get('https://poloniex.com/public?command=returnTicker')['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
             case 'btc':
             case 'eth':
                 return Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
