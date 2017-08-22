@@ -31,9 +31,9 @@ class InvestmentController extends Controller
             throw new GeneralException(100);
         }
 
-        $unit = fmod($amount, $currency->unit_price);
+        $unit = bcdiv($amount, $currency->unit_price);
 
-        if (($unit != 0 || $unit != $currency->unit_price) && $amount > 0) {
+        if ($currency->unit_price * $unit != $amount && $amount > 0) {
             throw new GeneralException(103);
         }
 
