@@ -6,7 +6,7 @@
 
 @section('content')
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-12">
       <div class="card card-stats">
         <div class="card-header" data-background-color="red">
           <i class="material-icons">attach_money</i>
@@ -36,6 +36,17 @@
         <div class="card-content">
           <p class="category">比特幣</p>
           <h3 class="title">{{ $btcAmount }} <small>BTC</small></h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card card-stats">
+        <div class="card-header" data-background-color="orange">
+          <i class="material-icons">attach_money</i>
+        </div>
+        <div class="card-content">
+          <p class="category">達世幣</p>
+          <h3 class="title">{{ $dashAmount }} <small>DASH</small></h3>
         </div>
       </div>
     </div>

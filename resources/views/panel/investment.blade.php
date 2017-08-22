@@ -35,6 +35,13 @@
                             <span class="check"></span> BTC
                           </label>
                         </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="currency" value="DASH" required>
+                            <span class="circle"></span>
+                            <span class="check"></span> DASH
+                          </label>
+                        </div>
                         <div class="form-group label-floating is-empty">
 													<label class="control-label">總價(美金)</label>
 													<input type="number" step="0.1" name="amount" class="form-control" required>

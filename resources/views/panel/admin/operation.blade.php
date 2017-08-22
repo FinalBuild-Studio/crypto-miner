@@ -32,6 +32,13 @@
                     <span class="check"></span> BTC
                   </label>
                 </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="currency" value="DASH">
+                    <span class="circle"></span>
+                    <span class="check"></span> DASH
+                  </label>
+                </div>
                 <div class="form-group label-floating is-empty">
                   <label class="control-label">總額度</label>
                   <input type="number" step="0.00000001" name="amount" class="form-control">

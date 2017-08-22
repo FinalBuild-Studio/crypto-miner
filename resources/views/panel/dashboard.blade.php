@@ -6,18 +6,18 @@
 
 @section('content')
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
       <div class="card card-stats">
-        <div class="card-header" data-background-color="orange">
+        <div class="card-header" data-background-color="purple">
           <i class="material-icons">account_balance</i>
         </div>
         <div class="card-content">
-          <p class="category">BTC 分配比重 / ETH 分配比重</p>
-          <h3 class="title">{{ $btcRevenue }} <small>%</small> / {{ $ethRevenue }} <small>%</small></h3>
+          <p class="category">BTC 分配比重 / ETH 分配比重 / DASH 分配比重</p>
+          <h3 class="title">{{ $btcRevenue }} <small>%</small> / {{ $ethRevenue }} <small>%</small> / {{ $dashRevenue }} <small>%</small></h3>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-12">
       <div class="card card-stats">
         <div class="card-header" data-background-color="red">
           <i class="material-icons">account_balance_wallet</i>
@@ -74,12 +74,34 @@
     </div>
     <div class="col-lg-6">
       <div class="card card-stats">
+        <div class="card-header" data-background-color="orange">
+          <i class="material-icons">attach_money</i>
+        </div>
+        <div class="card-content">
+          <p class="category">未確認</p>
+          <h3 class="title">{{ decimal_value($dash, '0') ?: 0 }} <small>DASH</small></h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card card-stats">
+        <div class="card-header" data-background-color="orange">
+          <i class="material-icons">attach_money</i>
+        </div>
+        <div class="card-content">
+          <p class="category">持有</p>
+          <h3 class="title">{{ decimal_value($dashWallet, '0') ?: 0 }} <small>DASH</small></h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card card-stats">
         <div class="card-header" data-background-color="default">
           <i class="material-icons">attach_money</i>
         </div>
         <div class="card-content">
           <p class="category">密碼幣估值(未確認)</p>
-          <h3 class="title">{{ round(crypto_sum(['BTC' => $btc, 'ETH' => $eth]) ?: 0) }} <small>TWD</small></h3>
+          <h3 class="title">{{ round(crypto_sum(['BTC' => $btc, 'ETH' => $eth, 'DASH' => $dash]) ?: 0) }} <small>TWD</small></h3>
         </div>
       </div>
     </div>
@@ -90,7 +112,7 @@
         </div>
         <div class="card-content">
           <p class="category">密碼幣估值(持有)</p>
-          <h3 class="title">{{ round(crypto_sum(['BTC' => $btcWallet, 'ETH' => $ethWallet]) ?: 0) }} <small>TWD</small></h3>
+          <h3 class="title">{{ round(crypto_sum(['BTC' => $btcWallet, 'ETH' => $ethWallet, 'DASH' => $dashWallet]) ?: 0) }} <small>TWD</small></h3>
         </div>
       </div>
     </div>
@@ -163,10 +185,39 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-chart" data-background-color="orange">
+          <div class="ct-chart" id="dash-chart"></div>
+        </div>
+        <div class="card-content">
+          <h4 class="title">達世幣每日產出趨勢</h4>
+          <p class="category">
+            相較於昨日
+            @if ($dashPercentage > 0)
+              <span class="text-success">
+                <i class="fa fa-long-arrow-up"></i> {{ abs($dashPercentage) }}%
+              </span>
+            @elseif ($dashPercentage < 0)
+              <span class="text-danger">
+                <i class="fa fa-long-arrow-down"></i> {{ abs($dashPercentage) }}%
+              </span>
+            @else
+              <span class="text-muted">
+                <i class="fa fa-long-arrow-right"></i> {{ abs($dashPercentage) }}%
+              </span>
+            @endif
+            的產出
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 @endsection
 
 @section('footerjs')
   @include('components.chart', ['element' => 'btc-chart', 'data' => $btcChart])
   @include('components.chart', ['element' => 'eth-chart', 'data' => $ethChart])
+  @include('components.chart', ['element' => 'dash-chart', 'data' => $dashChart])
 @endsection

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Currency extends Model
 {
 
-    public const ETH = 1;
-    public const BTC = 2;
-    public const USD = 3;
-    public const TWD = 4;
+    public const ETH  = 1;
+    public const BTC  = 2;
+    public const USD  = 3;
+    public const TWD  = 4;
+    public const DASH = 5;
 
     /**
      * Do not use timestamps
