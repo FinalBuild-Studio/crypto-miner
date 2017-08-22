@@ -2,7 +2,7 @@
 
 use Zttp\Zttp;
 use Carbon\Carbon;
-use App\{Investment, Revenue, Log, User};
+use App\{Investment, Revenue, Log, User, Reason};
 
 if (!function_exists('investors'))
 {
@@ -242,7 +242,10 @@ if (!function_exists('annual_revenue'))
 
         $date = $revenue->created_at;
 
-        $revenues = Revenue::who($user->id)->whereDate('created_at', '=', $date->toDateString())->get();
+        $revenues = Revenue::who($user->id)
+            ->whereIn('reason_id', [Reason::REVENUE, Reason::MAINTENANCE])
+            ->whereDate('created_at', '=', $date->toDateString())
+            ->get();
 
         $type  = [];
         $total = 0;
