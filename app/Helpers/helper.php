@@ -190,13 +190,22 @@ if (!function_exists('crypto_value'))
         try {
             $type = strtolower($type);
 
-            switch ($type) {
-                case 'dash':
-                    return Zttp::get('https://poloniex.com/public?command=returnTicker')->json()['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
-                case 'btc':
-                case 'eth':
-                    return Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+            $price = Redis::get('price:'.$type);
+
+            if (!$price) {
+                switch ($type) {
+                    case 'dash':
+                        $price = Zttp::get('https://poloniex.com/public?command=returnTicker')->json()['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
+                    case 'btc':
+                    case 'eth':
+                        $price = Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+                }
+
+                Redis::set('price:'.$type, $price);
+                Redis::expire('price:'.$type, 15);
             }
+
+            return $price;
         } catch (Exception $e) {
             return crypto_value($value);
         }
