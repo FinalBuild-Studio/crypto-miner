@@ -207,7 +207,7 @@ if (!function_exists('crypto_value'))
 
             return $price;
         } catch (Exception $e) {
-            return crypto_value($value);
+            return crypto_value($type);
         }
 
         return 0;
