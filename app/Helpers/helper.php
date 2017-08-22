@@ -187,14 +187,18 @@ if (!function_exists('crypto_value'))
 
     function crypto_value($type)
     {
-        $type = strtolower($type);
+        try {
+            $type = strtolower($type);
 
-        switch ($type) {
-            case 'dash':
-                return Zttp::get('https://poloniex.com/public?command=returnTicker')->json()['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
-            case 'btc':
-            case 'eth':
-                return Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+            switch ($type) {
+                case 'dash':
+                    return Zttp::get('https://poloniex.com/public?command=returnTicker')->json()['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
+                case 'btc':
+                case 'eth':
+                    return Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+            }
+        } catch (Exception $e) {
+            return crypto_value($value);
         }
 
         return 0;
