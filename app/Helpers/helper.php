@@ -2,7 +2,7 @@
 
 use Zttp\Zttp;
 use Carbon\Carbon;
-use App\{Investment, Revenue, Log, User};
+use App\{Investment, Revenue, Log, User, Reason};
 
 if (!function_exists('investors'))
 {
@@ -190,15 +190,26 @@ if (!function_exists('crypto_value'))
         try {
             $type = strtolower($type);
 
-            switch ($type) {
-                case 'dash':
-                    return Zttp::get('https://poloniex.com/public?command=returnTicker')->json()['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
-                case 'btc':
-                case 'eth':
-                    return Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+            $price = Redis::get('price:'.$type);
+
+            if (!$price) {
+                switch ($type) {
+                    case 'dash':
+                        $price = Zttp::get('https://poloniex.com/public?command=returnTicker')->json()['USDT_DASH']['last'] * Swap::latest('USD/TWD')->getValue();
+                        break;
+                    case 'btc':
+                    case 'eth':
+                        $price = Zttp::get('https://www.maicoin.com/api/prices/'.$type.'-twd')->json()['raw_sell_price'] / 100000;
+                        break;
+                }
+
+                Redis::set('price:'.$type, $price);
+                Redis::expire('price:'.$type, 15);
             }
+
+            return $price;
         } catch (Exception $e) {
-            return crypto_value($value);
+            return crypto_value($type);
         }
 
         return 0;
@@ -242,7 +253,10 @@ if (!function_exists('annual_revenue'))
 
         $date = $revenue->created_at;
 
-        $revenues = Revenue::who($user->id)->whereDate('created_at', '=', $date->toDateString())->get();
+        $revenues = Revenue::who($user->id)
+            ->whereIn('reason_id', [Reason::REVENUE, Reason::MAINTENANCE])
+            ->whereDate('created_at', '=', $date->toDateString())
+            ->get();
 
         $type  = [];
         $total = 0;
@@ -257,6 +271,49 @@ if (!function_exists('annual_revenue'))
 
         $investments = Swap::latest('USD/TWD')->getValue() * Investment::who($user->id)->valid()->sum('amount');
 
-        return round((($total * 365 - $investments) / $investments) * 100, 8);
+        return round((($total * 365 - $investments) / ($investments ?: 1)) * 100, 8);
+    }
+}
+
+if (!function_exists('annual_revenue_type'))
+{
+
+    function annual_revenue_type()
+    {
+        $date = Log::latest()
+            ->take(1)
+            ->first()
+            ->created_at;
+
+        $revenues = Revenue::whereIn('reason_id', [Reason::REVENUE, Reason::MAINTENANCE])
+            ->whereDate('created_at', '=', $date->toDateString())
+            ->get();
+
+        $type  = [];
+        $total = [];
+        $map   = [];
+        foreach ($revenues as $value) {
+            $currencyId   = $value->currency->id;
+            $currencyName = $value->currency->name;
+
+            $map[$currencyId]    = $currencyName;
+            $type[$currencyId]   = $type[$currencyId] ?? crypto_value($currencyName);
+            $total[$currencyId]  = $total[$currencyId] ?? 0;
+            $total[$currencyId] += $type[$currencyId] * $value->amount;
+        }
+
+        $investments = Investment::valid()
+            ->groupBy('currency_id')
+            ->select(DB::raw('currency_id, SUM(amount) AS amount'))
+            ->get();
+
+        $usd = Swap::latest('USD/TWD')->getValue();
+
+        $result = [];
+        foreach ($investments as $investment) {
+            $result[$map[$investment->currency_id]] = round((($total[$investment->currency_id] * 365 - $usd * $investment->amount) / ($usd * $investment->amount ?: 1)) * 100, 8);
+        }
+
+        return $result;
     }
 }

@@ -14,7 +14,8 @@
         "laravel/tinker": "~1.0",
         "marktopper/doctrine-dbal-timestamp-type": "^1.0",
         "php-http/guzzle6-adapter": "^1.1",
-        "php-http/message": "^1.5"
+        "php-http/message": "^1.5",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

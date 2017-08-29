@@ -213,6 +213,37 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header" data-background-color="red">
+          <h4 class="title">目前年投資報酬率(ROI)估算</h4>
+        </div>
+        <div class="card-content">
+
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th class="col-md-2">投資類型</th>
+                <th class="col-md-3">目前單價</th>
+                <th class="col-md-4">年投資報酬率(ROI)</th>
+                <th class="col-md-3">期望回本天數</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach (annual_revenue_type() as $type => $roi)
+                <tr>
+                  <td>{{ $type }}</td>
+                  <td>{{ crypto_value($type) }}</td>
+                  <td>{{ $roi }}%</td>
+                  <td>{{ round(365 / ($roi / 100 + 1)) }}天</td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 @endsection
 
