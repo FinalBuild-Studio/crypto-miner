@@ -25,26 +25,26 @@
                           <label>
                             <input type="radio" name="currency" value="ETH" required>
                             <span class="circle"></span>
-                            <span class="check"></span> ETH
+                            <span class="check"></span> ETH('.App\Currency::name('ETH')->unit_price.')
                           </label>
                         </div>
                         <div class="radio">
                           <label>
                             <input type="radio" name="currency" value="BTC" required>
                             <span class="circle"></span>
-                            <span class="check"></span> BTC
+                            <span class="check"></span> BTC('.App\Currency::name('BTC')->unit_price.')
                           </label>
                         </div>
                         <div class="radio">
                           <label>
                             <input type="radio" name="currency" value="DASH" required>
                             <span class="circle"></span>
-                            <span class="check"></span> DASH
+                            <span class="check"></span> DASH('.App\Currency::name('DASH')->unit_price.')
                           </label>
                         </div>
                         <div class="form-group label-floating is-empty">
-													<label class="control-label">總價(美金)</label>
-													<input type="number" step="0.1" name="amount" class="form-control" required>
+													<label class="control-label">單位</label>
+													<input type="number" step="1" name="unit" class="form-control" required>
 												  <span class="material-input"></span>
                         </div>
                         <div class="form-group label-floating is-empty">

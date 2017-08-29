@@ -22,7 +22,7 @@ class InvestmentController extends Controller
     public function store()
     {
         $user     = request()->user();
-        $amount   = request()->input('amount');
+        $unit     = request()->input('unit');
         $currency = request()->input('currency');
         $code     = request()->input('code');
         $currency = Currency::name($currency)->firstOrFail();
@@ -30,6 +30,8 @@ class InvestmentController extends Controller
         if (!$currency->is_crypto) {
             throw new GeneralException(100);
         }
+
+        $amount = $unit * $currency->unit_price;
 
         $unit = bcdiv($amount, $currency->unit_price);
 
