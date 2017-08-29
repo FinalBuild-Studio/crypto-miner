@@ -304,7 +304,7 @@ if (!function_exists('annual_revenue_type'))
 
         $investments = Investment::valid()
             ->groupBy('currency_id')
-            ->select(DB::raw('currency_id, SUM(amount)'))
+            ->select(DB::raw('currency_id, SUM(amount) AS amount'))
             ->get();
 
         $usd = Swap::latest('USD/TWD')->getValue();
