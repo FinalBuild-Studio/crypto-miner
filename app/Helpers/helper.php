@@ -280,7 +280,7 @@ if (!function_exists('annual_revenue_type'))
 
     function annual_revenue_type()
     {
-        $date = Log::reverse()
+        $date = Log::latest()
             ->take(1)
             ->first()
             ->created_at;
