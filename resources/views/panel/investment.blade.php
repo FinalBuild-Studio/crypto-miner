@@ -25,21 +25,21 @@
                           <label>
                             <input type="radio" name="currency" value="ETH" required>
                             <span class="circle"></span>
-                            <span class="check"></span> ETH('.App\Currency::name('ETH')->unit_price.')
+                            <span class="check"></span> ETH('.App\Currency::name('ETH')->first()->unit_price.')
                           </label>
                         </div>
                         <div class="radio">
                           <label>
                             <input type="radio" name="currency" value="BTC" required>
                             <span class="circle"></span>
-                            <span class="check"></span> BTC('.App\Currency::name('BTC')->unit_price.')
+                            <span class="check"></span> BTC('.App\Currency::name('BTC')->first()->unit_price.')
                           </label>
                         </div>
                         <div class="radio">
                           <label>
                             <input type="radio" name="currency" value="DASH" required>
                             <span class="circle"></span>
-                            <span class="check"></span> DASH('.App\Currency::name('DASH')->unit_price.')
+                            <span class="check"></span> DASH('.App\Currency::name('DASH')->first()->unit_price.')
                           </label>
                         </div>
                         <div class="form-group label-floating is-empty">
