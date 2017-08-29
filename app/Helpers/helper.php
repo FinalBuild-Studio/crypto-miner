@@ -274,3 +274,46 @@ if (!function_exists('annual_revenue'))
         return round((($total * 365 - $investments) / ($investments ?: 1)) * 100, 8);
     }
 }
+
+if (!function_exists('annual_revenue_type'))
+{
+
+    function annual_revenue_type()
+    {
+        $date = Log::reverse()
+            ->take(1)
+            ->first()
+            ->created_at;
+
+        $revenues = Revenue::whereIn('reason_id', [Reason::REVENUE, Reason::MAINTENANCE])
+            ->whereDate('created_at', '=', $date->toDateString())
+            ->get();
+
+        $type  = [];
+        $total = [];
+        $map   = [];
+        foreach ($revenues as $value) {
+            $currencyId   = $value->currency->id;
+            $currencyName = $value->currency->name;
+
+            $map[$currencyId]    = $currencyName;
+            $type[$currencyId]   = $type[$currencyId] ?? crypto_value($currencyName);
+            $total[$currencyId]  = $total[$currencyId] ?? 0;
+            $total[$currencyId] += $type[$currencyId] * $value->amount;
+        }
+
+        $investments = Investment::valid()
+            ->groupBy('currency_id')
+            ->select(DB::raw('currency_id, SUM(amount)'))
+            ->get();
+
+        $usd = Swap::latest('USD/TWD')->getValue();
+
+        $result = [];
+        foreach ($investments as $investment) {
+            $result[$map[$investment->currency_id]] = round((($total[$investment->currency_id] * 365 - $usd * $investment->amount) / ($usd * $investment->amount ?: 1)) * 100, 8);
+        }
+
+        return $result;
+    }
+}
