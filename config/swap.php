@@ -52,7 +52,7 @@ return [
     */
 
     'services' => [
-        'google' => true,
+        'yahoo' => true,
     ],
 
     /*
