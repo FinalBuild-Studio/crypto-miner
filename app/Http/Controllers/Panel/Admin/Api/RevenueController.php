@@ -15,7 +15,7 @@ class RevenueController extends Controller
         $json        = request()->json();
         $currency    = $json->get('currency');
         $amount      = $json->get('amount');
-        $maintenance = $json->get('maintenance', 0);
+        $maintenance = $json->get('maintenance', false);
 
         $currency = Currency::name($currency)->firstOrFail();
 

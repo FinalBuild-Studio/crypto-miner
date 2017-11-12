@@ -19,7 +19,6 @@ class AddDashCurrency extends Migration
             'is_crypto'  => true,
             'fee'        => 0,
             'unit_price' => 5.8,
-            'is_crypto'  => true,
             'min_sell'   => 0,
             'years'      => 1,
         ]);

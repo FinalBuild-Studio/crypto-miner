@@ -10,6 +10,8 @@ class Log extends Model
     protected $fillable = [
         'currency_id',
         'amount',
+        'created_at',
+        'updated_at',
     ];
 
     public function getAmountAttribute($value)
