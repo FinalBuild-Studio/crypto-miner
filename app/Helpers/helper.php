@@ -251,7 +251,7 @@ if (!function_exists('annual_revenue'))
     {
         $revenue = $user->revenue->reverse()->take(1)->first();
 
-        $date = $revenue->created_at;
+        $date = $revenue->created_at ?? Carbon::now();
 
         $revenues = Revenue::who($user->id)
             ->whereIn('reason_id', [Reason::REVENUE, Reason::MAINTENANCE])
