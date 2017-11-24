@@ -237,7 +237,7 @@ if (!function_exists('member_search_options'))
     {
         $options = '<option>請輸入要轉讓的對象</option>';
         foreach (User::all() as $user) {
-            $options .= '<option value="'.$user->id.'">'.'('.$user->platform.')'.$user->email.'</option>';
+            $options .= '<option value="'.$user->id.'">'.'('.$user->platform.') '.$user->email.'</option>';
         }
 
         return $options;
