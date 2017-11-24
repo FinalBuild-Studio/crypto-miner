@@ -52,7 +52,7 @@ return [
     */
 
     'services' => [
-        'google' => true,
+        env('SWAP_PROVIDER' ,'yahoo') => true,
     ],
 
     /*

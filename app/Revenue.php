@@ -13,6 +13,8 @@ class Revenue extends Model
         'user_id',
         'percentage',
         'reason_id',
+        'created_at',
+        'updated_at',
     ];
 
     public function reason()

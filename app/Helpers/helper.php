@@ -237,7 +237,7 @@ if (!function_exists('member_search_options'))
     {
         $options = '<option>請輸入要轉讓的對象</option>';
         foreach (User::all() as $user) {
-            $options .= '<option value="'.$user->id.'">'.$user->email.'</option>';
+            $options .= '<option value="'.$user->id.'">'.'('.$user->platform.') '.$user->email.'</option>';
         }
 
         return $options;
@@ -251,7 +251,7 @@ if (!function_exists('annual_revenue'))
     {
         $revenue = $user->revenue->reverse()->take(1)->first();
 
-        $date = $revenue->created_at;
+        $date = $revenue->created_at ?? Carbon::now();
 
         $revenues = Revenue::who($user->id)
             ->whereIn('reason_id', [Reason::REVENUE, Reason::MAINTENANCE])
