@@ -17,6 +17,7 @@ if (price && type) {
     .type('#user_email', process.env.MAICOIN_USER_EMAIL)
     .type('#user_password', process.env.MAICOIN_USER_PASS)
     .click('#loginForm .btn')
+    .wait(1000)
     .wait('#sell_coin_field')
     .type('#sell_coin_field', price)
     .click('#sell_submit')
