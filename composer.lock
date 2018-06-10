@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a03c16fd0dde6e1e00519d7685771a85",
+    "content-hash": "e89c3b8a72a4a03409c2fa4a2e10335a",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -787,16 +787,16 @@
         },
         {
             "name": "florianv/exchanger",
-            "version": "0.7.0",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/florianv/exchanger.git",
-                "reference": "e08ec452562c573bea886af925f2e184611f1dfc"
+                "reference": "1b8b3b3ef1d35aded66f66e159d6966603f472ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/florianv/exchanger/zipball/e08ec452562c573bea886af925f2e184611f1dfc",
-                "reference": "e08ec452562c573bea886af925f2e184611f1dfc",
+                "url": "https://api.github.com/repos/florianv/exchanger/zipball/1b8b3b3ef1d35aded66f66e159d6966603f472ce",
+                "reference": "1b8b3b3ef1d35aded66f66e159d6966603f472ce",
                 "shasum": ""
             },
             "require": {
@@ -820,7 +820,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.3-dev"
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -848,25 +848,25 @@
                 "exchange rates",
                 "money"
             ],
-            "time": "2017-10-02T06:28:31+00:00"
+            "time": "2018-05-30T13:45:39+00:00"
         },
         {
             "name": "florianv/laravel-swap",
-            "version": "1.1.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/florianv/laravel-swap.git",
-                "reference": "e1e6a2a0cb9d047059f3ef0fca194d111ce442b8"
+                "reference": "9b9fbc8ec109329775208cc1d24b9013166f2c41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/florianv/laravel-swap/zipball/e1e6a2a0cb9d047059f3ef0fca194d111ce442b8",
-                "reference": "e1e6a2a0cb9d047059f3ef0fca194d111ce442b8",
+                "url": "https://api.github.com/repos/florianv/laravel-swap/zipball/9b9fbc8ec109329775208cc1d24b9013166f2c41",
+                "reference": "9b9fbc8ec109329775208cc1d24b9013166f2c41",
                 "shasum": ""
             },
             "require": {
                 "cache/adapter-common": "^0.3",
-                "florianv/swap": "^3.0",
+                "florianv/swap": "^3.4",
                 "php": "^5.5|^7.0",
                 "psr/cache": "^1.0"
             },
@@ -880,6 +880,14 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Swap\\Laravel\\SwapServiceProvider"
+                    ],
+                    "aliases": {
+                        "Swap": "Swap\\Laravel\\Facades\\Swap"
+                    }
                 }
             },
             "autoload": {
@@ -909,24 +917,24 @@
                 "lumen",
                 "money"
             ],
-            "time": "2016-12-22T19:55:46+00:00"
+            "time": "2018-04-19T14:35:06+00:00"
         },
         {
             "name": "florianv/swap",
-            "version": "3.2.0",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/florianv/swap.git",
-                "reference": "71067ed45f5bb2dbcb1859d4be6d740407cd5471"
+                "reference": "9948c8b4d125b84d9aefc14f0702b84b5bb1522d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/florianv/swap/zipball/71067ed45f5bb2dbcb1859d4be6d740407cd5471",
-                "reference": "71067ed45f5bb2dbcb1859d4be6d740407cd5471",
+                "url": "https://api.github.com/repos/florianv/swap/zipball/9948c8b4d125b84d9aefc14f0702b84b5bb1522d",
+                "reference": "9948c8b4d125b84d9aefc14f0702b84b5bb1522d",
                 "shasum": ""
             },
             "require": {
-                "florianv/exchanger": "~0.3",
+                "florianv/exchanger": "^1.1",
                 "php": "^5.5 || ^7.0"
             },
             "require-dev": {
@@ -965,7 +973,7 @@
                 "exchange rates",
                 "money"
             ],
-            "time": "2017-10-02T09:43:13+00:00"
+            "time": "2018-04-19T14:17:15+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2094,16 +2102,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "7b50ab4d6c9fdaa1ed53ae310c955900af6e3372"
+                "reference": "9a6cb24de552bfe1aa9d7d1569e2d49c5b169a33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/7b50ab4d6c9fdaa1ed53ae310c955900af6e3372",
-                "reference": "7b50ab4d6c9fdaa1ed53ae310c955900af6e3372",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/9a6cb24de552bfe1aa9d7d1569e2d49c5b169a33",
+                "reference": "9a6cb24de552bfe1aa9d7d1569e2d49c5b169a33",
                 "shasum": ""
             },
             "require": {
@@ -2152,7 +2160,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2017-08-03T10:12:53+00:00"
+            "time": "2018-02-06T10:55:24+00:00"
         },
         {
             "name": "php-http/guzzle6-adapter",
