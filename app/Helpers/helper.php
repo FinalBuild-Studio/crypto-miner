@@ -7,10 +7,10 @@ use App\{Investment, Revenue, Log, User, Reason};
 if (!function_exists('investors'))
 {
 
-    function investors($currency)
+    function investors($currency, $date = null)
     {
         $investors   = [];
-        $investments = Investment::valid()->currencyType($currency)->get();
+        $investments = Investment::valid($date ? new Carbon($date) : Carbon::now())->currencyType($currency)->get();
 
         foreach ($investments as $investment) {
             $investors[$investment->user_id]   = $investors[$investment->user_id] ?? [];

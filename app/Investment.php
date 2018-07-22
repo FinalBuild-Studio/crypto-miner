@@ -40,11 +40,11 @@ class Investment extends Model
         return decimal_value($value);
     }
 
-    public function scopeValid($query)
+    public function scopeValid($query, $date = null)
     {
         return $query
             ->whereNotNull('expired_at')
-            ->whereDate('expired_at', '>=', Carbon::now());
+            ->whereDate('expired_at', '>=', $date ?? Carbon::now());
     }
 
     public function scopeWho($query, $userId)
