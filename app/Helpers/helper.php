@@ -311,7 +311,7 @@ if (!function_exists('annual_revenue_type'))
 
         $result = [];
         foreach ($investments as $investment) {
-            $result[$map[$investment->currency_id]] = round((($total[$investment->currency_id] * 365 - $usd * $investment->amount) / ($usd * $investment->amount ?: 1)) * 100, 8);
+            $result[$map[$investment->currency_id]] = round((($total[$investment->currency_id] ?? 0 * 365 - $usd * $investment->amount) / ($usd * $investment->amount ?: 1)) * 100, 8);
         }
 
         return $result;
