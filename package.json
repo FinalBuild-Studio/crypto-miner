@@ -19,7 +19,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "laravel-mix": "0.*",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "material-modal": "^0.1.2",
     "nightmare": "^2.10.0",
     "otpauth": "^2.2.4",
