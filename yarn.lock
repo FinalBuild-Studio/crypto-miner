@@ -4396,9 +4396,9 @@ osenv@0, osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-otpauth@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/otpauth/-/otpauth-2.2.4.tgz#4c15c6cc28d38c8cb9c9c2da0849d2e97b0f64db"
+otpauth@^3.2.8:
+  version "3.2.8"
+  resolved "https://registry.yarnpkg.com/otpauth/-/otpauth-3.2.8.tgz#1f21ccc27ab04037c31271bc75ddd354ae27634e"
 
 p-finally@^1.0.0:
   version "1.0.0"
