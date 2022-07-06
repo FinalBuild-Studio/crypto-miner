@@ -23,7 +23,7 @@
     "material-modal": "^0.1.2",
     "nightmare": "^2.10.0",
     "otpauth": "^2.2.4",
-    "select2": "^4.0.3",
+    "select2": "^4.0.6",
     "url-query": "^2.0.0"
   },
   "dependencies": {}
